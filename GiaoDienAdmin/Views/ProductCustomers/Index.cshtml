@@ -1,0 +1,511 @@
+﻿@model IEnumerable<GiaoDienAdmin.Models.Product>
+
+
+
+@{
+    ViewData["Title"] = "Khuyến mãi";
+}
+
+<main>
+    <!-- Navigation Links -->
+    <div class="bg-white">
+        <div class="container">
+            <ul class="nav justify-content-center py-2">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://localhost:7046/ProductCustomers/Index">TRANG CHỦ</a>
+                </li>
+                <!-- Cửa sổ của Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="https://localhost:7046/ProductCustomers/Locsp" id="menuDropdown">MENU</a>
+                    <div class="dropdown-menu" id="menuList">
+                        <div class="menu-columns">
+                            <!-- Cột trái -->
+                            <ul class="left-menu">
+                                <li>
+                                    <a class="dropdown-item text-success mb-5" href="#">HỘP QUÀ TẾT "MÙA HOA NỞ"</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item text-success" href="@Url.Action("LocspBanh", "ProductCustomers")">BÁNH</a>
+                                </li>
+                                <li>
+                                    @foreach (var product in Model.Where(p => p.Category.Name.IndexOf("BÁNH", StringComparison.OrdinalIgnoreCase) >= 0))
+                                    {
+                                    <a class="dropdown-item" href="@Url.Action("Details", "ProductCustomers", new { id = product.Id })">@product.Name</a>
+                                    }
+                                </li>
+                            </ul>
+                            <!-- Cột phải -->
+                            <ul class="right-menu">
+                                <li>
+                                    <a class="dropdown-item text-success" href="@Url.Action("LocspNuoc", "ProductCustomers")">THỨC UỐNG</a>
+                                </li>
+
+                                <li>
+                                    @foreach (var product in Model.Where(p => p.Category.Name.IndexOf("THỨC UỐNG", StringComparison.OrdinalIgnoreCase) >= 0))
+                                    {
+                                    <a class="dropdown-item" href="@Url.Action("Details", "ProductCustomers", new { id = product.Id })">@product.Name</a>
+                                    }
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <!-- Cửa sổ của sản phẩm -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="https://localhost:7046/ProductCustomers/Locsp1" id="menuDropdown">SẢN PHẨM ĐÓNG GÓI</a>
+                    <div class="dropdown-menu-product" id="menuList">
+                        <div class="menu-columns">
+                            <!-- Cột trái -->
+                            <ul class="left-menu">
+                                <li>
+                                    <a class="dropdown-item text-success" href="@Url.Action("LocspTra", "ProductCustomers")">TRÀ</a>
+                                </li>
+                                <li>
+                                    @foreach (var product in Model.Where(p => p.Category.Name.IndexOf("Trà", StringComparison.OrdinalIgnoreCase) >= 0))
+                                    {
+                                        <a class="dropdown-item" href="@Url.Action("Details", "ProductCustomers", new { id = product.Id })">@product.Name</a>
+                                    }
+                                </li>
+                            </ul>
+                            <!-- Cột phải -->
+                            <ul class="right-menu">
+                                <li>
+                                    <a class="dropdown-item text-success" href="@Url.Action("LocspCaPhe", "ProductCustomers")" >CÀ PHÊ</a>
+                                </li>
+                                <li>
+                                    @foreach (var product in Model.Where(p => p.Category.Name.IndexOf("Cà Phề", StringComparison.OrdinalIgnoreCase) >= 0))
+                                    {
+                                        <a class="dropdown-item" href="@Url.Action("Details", "ProductCustomers", new { id = product.Id })">@product.Name</a>
+                                    }
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <!-- Cửa sổ về chúng tôi -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="menuDropdown">VỀ CHÚNG TÔI</a>
+                    <div class="dropdown-menu-about" id="menuList">
+                        <div class="menu-rows">
+                            <!-- CÁC TIÊU ĐỀ KẾ BÊN NHAU -->
+                            <div class="menu-section">
+                                <a class="dropdown-title text-success" href="#">CÀ PHÊ</a>
+                                <a class="dropdown-item" href="#">Hành trình tách cà phê</a>
+                                <a class="dropdown-item" href="#">Hạt cà phê phúc long</a>
+                                <a class="dropdown-item" href="#">Nghệ thuật pha chế</a>
+                            </div>
+
+                            <div class="menu-section">
+                                <a class="dropdown-title text-success" href="#">TRÀ</a>
+                                <a class="dropdown-item" href="#">Hành trình tách trà</a>
+                                <a class="dropdown-item" href="#">Lựa chọn loại trà</a>
+                                <a class="dropdown-item" href="#">Nghệ thuật pha chế</a>
+                                <a class="dropdown-item" href="#">Thiết kế mới trà túi lọc</a>
+                            </div>
+
+                            <div class="menu-section">
+                                <a class="dropdown-title text-success" href="#">VỀ LION</a>
+                                <a class="dropdown-item" href="#">Giới thiệu công ty</a>
+                                <a class="dropdown-item" href="#">Thư viện hình ảnh</a>
+                                <a class="dropdown-item" href="#">Liên hệ</a>
+                            </div>
+
+                            <div class="menu-section">
+                                <a class="dropdown-title text-success" href="#">TUYỂN DỤNG</a>
+                                <a class="dropdown-item" href="#">Htch</a>
+                                <a class="dropdown-item" href="#">Kiosk</a>
+                                <a class="dropdown-item" href="#">Văn phòng</a>
+                                <a class="dropdown-item" href="#">Nhà máy</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="https://localhost:7046/ProductCustomers/Promotion">KHUYẾN MÃI</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">HỘI VIÊN</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Banner (Slider) -->
+    <hr class="shadow-hr" />
+    <div class="container">
+        <div id="carouselExampleIndicators" class="carousel slide" style="margin-top: -17px">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="~/img/Sider1.jpg" alt="Banner 1" />
+                </div>
+                <div class="carousel-item">
+                    <img src="~/img/Sider2.jpg" alt="Banner 2" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-5">
+        <h3 class="text-center mb-4" style="color: #28a745;">BST HỘP QUÀ TẾT - MÙA HOA NỞ 2025</h3>
+
+        <div class="row g-3 mb-5">
+            @foreach (var product in Model.Where(p => p.Category.Name.Contains("HỘP QUÀ TẾT")).Take(2))
+            {
+                <div class="col-md-3">
+                    <div class="product-card">
+                        <span class="heart-icon">
+                            <i class="fa-regular fa-heart"></i>
+                        </span>
+                        <a href="@Url.Action("Details", "ProductCustomers", new { id = product.Id })" class="product-link">
+                            <div class="product-content">
+                                @if (!string.IsNullOrEmpty(product.Img))
+                                {
+                                    // Fetching image from API
+                                    var fullImageUrl = $"{product.Img}";
+                                    <img src="@fullImageUrl" alt="@product.Name" class="img-fluid" style="object-fit: cover; height: 200px; width: 100%; border-radius: 5px;" />
+                                }
+                                else
+                                {
+                    // Default image if none exists
+                                    <img src="/images/default-placeholder.png" alt="Ảnh mặc định" class="img-fluid" style="height: 200px; width: 100%; opacity: 0.5; border-radius: 5px;" />
+                                }
+                                <h6 class="product-title">@product.Name</h6>
+                                <p class="fw-bold text-success">@product.Price.ToString("C3")</p>
+                            </div>
+                        </a>
+                        <a href="@Url.Action("AddToCart", "Cart", new { id = product.Id })" class="btn btn-buy mt-3">
+                            <i class="fas fa-cart-plus cart-icon"></i> Đặt mua
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="container py-5">
+            @foreach (var categoryGroup in Model.GroupBy(p => p.CategoryId).Where(g => g.Key != null))
+            {
+                var category = categoryGroup.FirstOrDefault()?.Category;
+                var productCount = categoryGroup.Count(); // Đếm số lượng sản phẩm trong danh mục
+
+                // Kiểm tra nếu tên danh mục chứa "HỘP QUÀ TẾT" (hoặc từ khóa tương tự)
+                if (category.Name.Contains("HỘP QUÀ TẾT"))
+                {
+                    continue;
+                }
+
+                <h1 class="text-center mb-4 mt-3" style="color: #28a745;">@category.Name</h1>
+
+                <div class="row g-4 product-list" data-category="@category.Id">
+                    @foreach (var product in categoryGroup) // Không ẩn sản phẩm, hiển thị tất cả nhưng chỉ load dần
+                    {
+                        <div class="col-md-3 product-item" data-category="@category.Id" style="display: none;">
+                            <div class="card product-card">
+                                <span class="heart-icon">
+                                    <i class="fa-regular fa-heart"></i>
+                                </span>
+                                <a href="@Url.Action("Details", "ProductCustomers", new { id = product.Id })">
+                                    @if (!string.IsNullOrEmpty(product.Img))
+                                    {
+                                        // Fetching image from API
+                                        var fullImageUrl = $"{product.Img}";
+                                        <img src="@fullImageUrl" alt="@product.Name" class="img-fluid" style="object-fit: cover; height: 200px; width: 100%; border-radius: 5px;" />
+                                    }
+                                    else
+                                    {
+                                        // Default image if none exists
+                                        <img src="/images/default-placeholder.png" alt="Ảnh mặc định" class="img-fluid" style="height: 200px; width: 100%; opacity: 0.5; border-radius: 5px;" />
+                                    }
+                                </a>
+                                <div class="card-body">
+                                    <h6 class="card-title"> @((product.Name.Length > 14) ? product.Name.Substring(0, 13) + "..." : product.Name)</h6>
+                                    <p class="fw-bold text-success">@product.Price.ToString("C3")</p>
+                                    <a href="@Url.Action("AddToCart", "Cart", new { id = product.Id })" class="btn btn-buy mt-3">
+                                        <i class="fas fa-cart-plus cart-icon"></i> Đặt mua
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+
+                <!-- Nút Xem thêm chỉ hiển thị khi số lượng sản phẩm > 4 -->
+                @if (productCount > 4)
+                {
+                    <div class="container text-center">
+                        <button class="custom-button btn-load-more" data-category="@category.Id">
+                            <span>Xem thêm sản phẩm</span> <i class="bi bi-chevron-down"></i>
+                        </button>
+                    </div>
+                }
+            }
+        </div>
+    </main>
+
+<section>
+    <!-- Khuyến mãi -->
+    <div class="container py-4">
+        <h2 class="text-center mb-4" style="color: rgb(0, 112, 60)">
+            Tin tức & Khuyến mãi
+        </h2>
+        <div class="row g-3">
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="data:image/png;base64,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"
+                         class="card-img-top"
+                         alt="Hình ảnh" />
+                    <div class="card-body">
+                        <p class="card-title">LỊCH NGHỈ TẾT 2025</p>
+                        <p class="view-count">76 lượt xem</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://hcm.fstorage.vn/phuclong/2025/01/pl-hop-qua-tet-2025-digital-zalo-membership-20250107103214.jpg"
+                         class="card-img-top"
+                         alt="Hình ảnh" />
+                    <div class="card-body">
+                        <p class="card-title">
+                            ĐÓN TẾT RỘN RÀNG CÙNG BST HỘP QUÀ TẾT "MÙA HOA NỞ"
+                        </p>
+                        <p class="view-count">251,400 lượt xem</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://hcm.fstorage.vn/phuclong/2024/12/pl-membership-2024-dec-19-lcd-20241220080728.jpg"
+                         class="card-img-top"
+                         alt="Hình ảnh" />
+                    <div class="card-body">
+                        <p class="card-title">
+                            DANH SÁCH CỬA HÀNG HOẠT ĐỘNG ĐẾN 24H NGÀY 31/12
+                        </p>
+                        <p class="view-count">3,189 lượt xem</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://hcm.fstorage.vn/phuclong/2024/11/z6025323572747_04c1789072a3dc261814ffecf4de5c03-20241112111018.jpg"
+                         class="card-img-top"
+                         alt="Hình ảnh" />
+                    <div class="card-body">
+                        <p class="card-title">PHÚC LONG MỜI BẠN 01 LY TRÀ LUCKY</p>
+                        <p class="view-count">11,394 lượt xem</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://hcm.fstorage.vn/phuclong/2024/11/z6025323572747_04c1789072a3dc261814ffecf4de5c03-20241112111018.jpg"
+                         class="card-img-top"
+                         alt="Hình ảnh" />
+                    <div class="card-body">
+                        <p class="card-title">PHÚC LONG MỜI BẠN 01 LY TRÀ LUCKY</p>
+                        <p class="view-count">11,394 lượt xem</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://hcm.fstorage.vn/phuclong/2024/11/z6025323572747_04c1789072a3dc261814ffecf4de5c03-20241112111018.jpg"
+                         class="card-img-top"
+                         alt="Hình ảnh" />
+                    <div class="card-body">
+                        <p class="card-title">PHÚC LONG MỜI BẠN 01 LY TRÀ LUCKY</p>
+                        <p class="view-count">11,394 lượt xem</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://hcm.fstorage.vn/phuclong/2024/11/z6025323572747_04c1789072a3dc261814ffecf4de5c03-20241112111018.jpg"
+                         class="card-img-top"
+                         alt="Hình ảnh" />
+                    <div class="card-body">
+                        <p class="card-title">PHÚC LONG MỜI BẠN 01 LY TRÀ LUCKY</p>
+                        <p class="view-count">11,394 lượt xem</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="https://hcm.fstorage.vn/phuclong/2024/11/z6025323572747_04c1789072a3dc261814ffecf4de5c03-20241112111018.jpg"
+                         class="card-img-top"
+                         alt="Hình ảnh" />
+                    <div class="card-body">
+                        <p class="card-title">PHÚC LONG MỜI BẠN 01 LY TRÀ LUCKY</p>
+                        <p class="view-count">11,394 lượt xem</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- Phần Map -->
+<!-- Map Section -->
+<div class="container py-4">
+    <h2 class="text-center mb-4" style="color: #28a745">
+        Danh sách cửa hàng
+    </h2>
+    <div class="row">
+        <!-- Map Section -->
+        <div class="col-md-6">
+            <div class="map-container bg-light">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1232611649016!2d106.68027131536756!3d10.80663109230061!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDQ4JzAxLjIiTiAxMDbCsDQxJzA5LjgiRQ!5e0!3m2!1sen!2s!4v1674393547834!5m2!1sen!2s"
+                        width="100%"
+                        height="100%"
+                        style="border: 0"
+                        allowfullscreen=""
+                        loading="lazy"></iframe>
+            </div>
+        </div>
+        <!-- Store List Section -->
+        <div class="col-md-6">
+            <div class="mb-3">
+                <input type="text"
+                       class="form-control mb-2"
+                       placeholder="Tìm kiếm cửa hàng Phúc Long" />
+            </div>
+
+            <!-- Search by area -->
+            <div class="mb-3">
+                <h6 style="color: #28a745">Tìm kiếm theo khu vực</h6>
+                <div class="row g-2">
+                    <div class="col-md-4">
+                        <select class="form-select">
+                            <option selected>Chọn tỉnh/thành</option>
+                            <option>Hồ Chí Minh</option>
+                            <option>Hà Nội</option>
+                            <option>Đà Nẵng</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-select">
+                            <option selected>Quận/huyện</option>
+                            <option>Quận 1</option>
+                            <option>Quận 3</option>
+                            <option>Quận Phú Nhuận</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-select">
+                            <option selected>Phường/xã</option>
+                            <option>Phường 1</option>
+                            <option>Phường 2</option>
+                            <option>Phường Tân Định</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Current location -->
+            <div class="mb-3">
+                <span><i class="fa-solid fa-location-crosshairs"></i></span>
+                <h6 style="color: #28a745">Vị trí hiện tại của quý khách</h6>
+                <p>
+                    78/4A Đ. Phùng Văn Cung, Phường 7, Phú Nhuận, Hồ Chí Minh, Vietnam
+                </p>
+            </div>
+
+            <div class="store-list">
+                <div class="store-item">
+                    <div class="location-info d-flex align-items-center">
+                        <img src="./img/Screenshot 2025-01-22 151120.png"
+                             alt="Location"
+                             class="location-img me-2" />
+                        <span style="color: #28a745; font-weight: bold">HCM-CH 95 Phan Xích Long P.2 Q.PN</span>
+                    </div>
+                    <p><strong>Số điện thoại:</strong> (028) 3510 9566</p>
+                    <p><strong>Giờ hoạt động:</strong> 07:00 - 22:30</p>
+                    <button class="btn btn-success btn-sm mb-1">Chỉ đường</button>
+                </div>
+                <div class="store-item">
+                    <div class="location-info d-flex align-items-center">
+                        <img src="./img/Screenshot 2025-01-22 151120.png"
+                             alt="Location"
+                             class="location-img me-2" />
+                        <span style="color: #28a745; font-weight: bold">HCM-CH 46 Trần Quang Khải P.TĐ Q.1</span>
+                    </div>
+                    <p>
+                        <strong>Địa chỉ:</strong> 46 Trần Quang Khải, Tân Định, Q.1, TP.
+                        Hồ Chí Minh
+                    </p>
+                    <p><strong>Số điện thoại:</strong> (028) 7100 1968</p>
+                    <p><strong>Giờ hoạt động:</strong> 07:00 - 22:30</p>
+                    <button class="btn btn-success btn-sm mb-1">Chỉ đường</button>
+                </div>
+                <div class="store-item">
+                    <div class="location-info d-flex align-items-center">
+                        <img src="./img/Screenshot 2025-01-22 151120.png"
+                             alt="Location"
+                             class="location-img me-2" />
+                        <span style="color: #28a745; font-weight: bold">HCM - Hai Bà Trưng</span>
+                    </div>
+                    <p>
+                        <strong>Địa chỉ:</strong> 349 - 351 - 353 Hai Bà Trưng, Q.1, TP.
+                        Hồ Chí Minh
+                    </p>
+                    <p><strong>Số điện thoại:</strong> (028) 7300 1968</p>
+                    <p><strong>Giờ hoạt động:</strong> 07:00 - 22:30</p>
+                    <button class="btn btn-success btn-sm mb-1">Chỉ đường</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Hiển thị 4 sản phẩm đầu tiên mặc định
+            document.querySelectorAll(".product-list").forEach(productList => {
+                let products = productList.querySelectorAll(".product-item");
+                let count = 0;
+                products.forEach((product, index) => {
+                    if (count < 4) {
+                        product.style.display = "block"; // Hiển thị 4 sản phẩm đầu tiên
+                        count++;
+                    }
+                });
+            });
+
+            // Xử lý sự kiện khi nhấn nút "Xem thêm"
+            document.querySelectorAll(".btn-load-more").forEach(button => {
+                button.addEventListener("click", function () {
+                    let categoryId = this.getAttribute("data-category");
+                    let productList = document.querySelector(`[data-category='${categoryId}']`);
+                    let hiddenProducts = productList.querySelectorAll(".product-item[style='display: none;']");
+
+                    let count = 0;
+                    hiddenProducts.forEach(product => {
+                        if (count < 4) { // Hiển thị thêm 4 sản phẩm mỗi lần bấm
+                            product.style.display = "block";
+                            count++;
+                        }
+                    });
+
+                    // Nếu không còn sản phẩm ẩn, ẩn luôn nút "Xem thêm"
+                    if (productList.querySelectorAll(".product-item[style='display: none;']").length === 0) {
+                        this.style.display = "none"; // Ẩn nút nếu không còn sản phẩm để tải
+                    }
+
+                    // Cập nhật lại nội dung nút Xem thêm nếu số lượng sản phẩm còn lại nhỏ hơn 4
+                    if (hiddenProducts.length <= 4) {
+                        this.querySelector("span").textContent = "Xem thêm " + hiddenProducts.length + " sản phẩm";
+                    }
+                });
+            });
+        });
+
+</script>

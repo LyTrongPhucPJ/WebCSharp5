@@ -1,0 +1,102 @@
+﻿@* @model GiaoDienAdmin.Models.ProductCategories
+
+@{
+    ViewData["Title"] = "Chi tiết danh mục sản phẩm";
+}
+
+@section DetailProductCategories {
+
+    <div class="container mt-4">
+        <h1 class="text-center">@ViewData["Title"]</h1>
+
+        <div class="card">
+            <div class="card-header">
+                <h5>Thông tin chi tiết danh mục</h5>
+            </div>
+            <div class="card-body">
+
+                <dl class="row">
+                    <dt class="col-sm-2">Tên danh mục</dt>
+                    <dd class="col-sm-10">@Model.Name</dd>
+
+                    <dt class="col-sm-2">Mô tả</dt>
+                    <dd class="col-sm-10">@Model.Description</dd>
+
+       
+
+                </dl>
+
+                <!-- Nút Quay lại -->
+                <div class="form-group mt-3">
+                    <a href="@Url.Action("Index", "ProductCategories", new { area = "Admin" })" class="btn btn-secondary">Quay lại</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+<style>
+    /* Thêm thanh cuộn cho toàn bộ bảng */
+    .table-responsive {
+        max-height: 600px; /* Giới hạn chiều cao của bảng */
+
+        overflow-y: auto; /* Cho phép cuộn dọc khi dữ liệu vượt quá chiều cao */
+        overflow-x: auto; /* Cho phép cuộn ngang khi bảng rộng */
+    }
+
+</style>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+ *@
+
+ @model GiaoDienAdmin.Models.ProductCategories
+
+@{
+    ViewData["Title"] = "Chi tiết danh mục sản phẩm";
+}
+
+@section DetailProductCategories {
+    <div class="container mt-4">
+        <h1 class="text-center">@ViewData["Title"]</h1>
+
+        <div class="card mx-auto" style="max-width: 600px;">
+            <!-- Thêm max-width và mx-auto để căn giữa -->
+            <div class="card-header">
+                <h5>Thông tin chi tiết danh mục</h5>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Tên danh mục</dt>
+                    <dd class="col-sm-9">@Model.Name</dd>
+
+                    <dt class="col-sm-3">Mô tả</dt>
+                    <dd class="col-sm-9">@Model.Description</dd>
+                </dl>
+
+                <!-- Nút Quay lại -->
+                <div class="form-group mt-1 text-center">
+                    <a href="@Url.Action("Index", "ProductCategories", new { area = "Admin" })" class="btn btn-secondary">Quay lại</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<style>
+    /* Căn giữa container */
+    .container {
+        max-width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /* Căn giữa card và giới hạn chiều rộng */
+    .card {
+        max-width: 600px; /* Giới hạn chiều rộng của card */
+        margin: 0 auto; /* Căn giữa card */
+    }
+</style>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

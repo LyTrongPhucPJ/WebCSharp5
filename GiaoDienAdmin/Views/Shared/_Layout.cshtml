@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>LION COFFEE</title>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="~/css/Index.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/HeaderAndFooter.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/ProductDetails.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+          rel="stylesheet" />
+
+    <!-- Thêm Bootstrap CSS cho Modal -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    @* css của tài khoản
+    *@
+
+
+    <style>
+        /* Phần chứa tên người dùng */
+        .user-container {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+            /* Ẩn menu ban đầu */
+            .user-container .dropdown-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: white;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+                border-radius: 5px;
+                padding: 10px;
+                min-width: 150px;
+                z-index: 1000;
+            }
+
+                /* Thiết kế item trong dropdown */
+                .user-container .dropdown-menu a {
+                    display: block;
+                    text-decoration: none;
+                    color: black;
+                    padding: 8px 12px;
+                    transition: background 0.3s;
+                }
+
+                    .user-container .dropdown-menu a:hover {
+                        background: #f0f0f0;
+                    }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 9999; /* Đảm bảo navbar luôn ở trên cùng */
+            background-color: white; /* Đảm bảo nền của navbar luôn rõ ràng */
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thêm bóng mờ để navbar nổi bật khi lướt trang */
+        }
+
+    </style>
+</head>
+
+
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg bg-white">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+                <img src="~/img/Ảnh sản phẩm (1).png" alt="Logo" width="70px" />
+            </a>
+            <!-- Search Bar -->
+            <form class="d-flex flex-grow-1 mx-3 search-bar-wrapper">
+                <div class="search-bar-container">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input class="form-control search-bar"
+                           type="search"
+                           placeholder="Bạn muốn mua gì..."
+                           aria-label="Search" />
+                </div>
+            </form>
+
+            <!-- Right Content -->
+            <div class="delivery-info me-3">
+                <img src="https://phuclong.com.vn/_next/static/images/delivery-686d7142750173aa8bc5f1d11ea195e4.png"
+                     alt="Delivery Icon" />
+                <div class="delivery-text">
+                    <span>Đến Lấy</span>
+                    <p>95 Phan Xích Long P.2 Q. Phú Nhuận</p>
+                </div>
+            </div>
+            <a href="#" class="me-3">
+                <i class="fa-regular fa-envelope fa-lg icon-green"></i>
+            </a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="user-container me-3" id="userDropdown">
+                    <span class="fw-bold text-dark">@User.Identity.Name</span>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/User/Profile">📄 Hồ sơ</a>
+                        <a class="dropdown-item" href="/User/LoginPhone">🚪 Đăng xuất</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <a href="/User/Register" class="me-3">
+                    <i class="fa-regular fa-user fa-lg icon-green"></i>
+                </a>
+            }
+
+
+        </div>
+    </nav>
+
+    <!-- Navigation Links -->
+    <!-- Navigation Links -->
+
+
+    @RenderBody();
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row text-md-start">
+                <div class="col-12 col-md-3 mb-4">
+                    <h6><strong>ĐỊA CHỈ</strong></h6>
+                    <p>
+                        <strong>Trụ sở chính:</strong> Công ty Cổ Phần Phúc Long Heritage
+                        - ĐKKD: 0316 871719 do sở KHĐT TPHCM cấp lần đầu ngày 21/05/2021
+                    </p>
+                    <p>
+                        <strong>Nhà máy:</strong> D_8D_CN Đường XE 1, Khu Công Nghiệp Mỹ
+                        Phước III, phường Mỹ Phước, thị xã Bến Cát, tỉnh Bình Dương, Việt
+                        Nam.
+                    </p>
+                    <p>
+                        <strong>Địa chỉ:</strong> Phòng 702, Tầng 7, Tòa nhà Central
+                        Plaza, số 17 Lê Duẩn, phường Bến Nghé, quận 1, Hồ Chí Minh.
+                    </p>
+                    <p><strong>Hotline Đặt hàng:</strong> 1800 6779</p>
+                    <p>
+                        <strong>Hotline Công ty:</strong> 1900 2345 18 (Bấm phím 0: Lễ Tân
+                        | phím 1: CSKH)
+                    </p>
+                    <p>
+                        <strong>Email:</strong> sales@phuclong.masangroup.com,
+                        info2@phuclong.masangroup.com
+                    </p>
+                </div>
+
+                <div class="col-6 col-md-2 mb-5 d-flex flex-column">
+                    <div class="mb-5">
+                        <h6><strong>CÔNG TY</strong></h6>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Giới thiệu công ty</a></li>
+                            <li><a href="#">Thư viện hình ảnh</a></li>
+                            <li><a href="#">Liên hệ</a></li>
+                        </ul>
+                    </div>
+                    <div class="mt-5">
+                        <h6>KHUYẾN MÃI</h6>
+                        <p>Thông tin khuyến mãi</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-2 mb-4 d-flex flex-column">
+                    <div class="mb-3">
+                        <h5><strong>TUYỂN DỤNG</strong></h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">HTCH</a></li>
+                            <li><a href="#">Kiosk</a></li>
+                            <li><a href="#">Văn phòng</a></li>
+                            <li><a href="#">Nhà máy</a></li>
+                        </ul>
+                    </div>
+                    <div class="mt-5">
+                        <h6>DÁNH SÁCH CỬA HÀNG</h6>
+                        <p>Danh sách cửa hàng</p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3 mb-4 d-flex flex-column">
+                    <div class="mb-3">
+                        <h5><strong>HỘI VIÊN</strong></h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Câu hỏi thường gặp (FAQ)</a></li>
+                            <li>
+                                <a href="#">Điều khoản và điều kiện chương trình hội viên</a>
+                            </li>
+                            <li><a href="#">Điều khoản & Điều kiện Thẻ trả trước</a></li>
+                            <li>
+                                <a href="#">Điều khoản và Điều kiện sử dụng Thiệp Voucher</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h6>ĐIỀU KHOẢN SỬ DỤNG</h6>
+                        <p>
+                            Chính sách bảo mật thông tin<br />
+                            Chính sách đặt hàng
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-2 mb-4 d-flex flex-column">
+                    <div class="mb-5">
+                        <h5><strong>LIÊN HỆ</strong></h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Liên hệ</a></li>
+                        </ul>
+                    </div>
+                    <div class="mt-5">
+                        <div class="mb-5"></div>
+                        <img src="./img/Zalo.png" alt="" style="height: 50px" />
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-light" />
+
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center text-center">
+                <div>© Công ty CP Phúc Long Heritage 2025</div>
+                <div class="social-icons">
+                    <img src="~/img/itagam.png" alt="Instagram" />
+                    <img src="~/img/fb.png" alt="Facebook" />
+                    <img src="~/img/Youtube.png" alt="YouTube" />
+                </div>
+            </div>
+        </div>
+    </footer>
+    @*   //js của tài khoản *@
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const userDropdown = document.getElementById("userDropdown");
+            const dropdownMenu = userDropdown.querySelector(".dropdown-menu");
+
+            userDropdown.addEventListener("mouseenter", function () {
+                dropdownMenu.style.display = "block";
+            });
+
+            userDropdown.addEventListener("mouseleave", function () {
+                dropdownMenu.style.display = "none";
+            });
+        });
+    </script>
+
+    <!-- Thêm Bootstrap JS và jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

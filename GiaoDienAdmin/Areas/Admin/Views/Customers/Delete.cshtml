@@ -1,0 +1,171 @@
+﻿@* 
+
+ @model GiaoDienAdmin.Models.Customer
+
+@{
+    ViewData["Title"] = "Xóa khách hàng";
+}
+
+<div class="container mt-4">
+        <!-- Form trong container với viền xung quanh -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="border p-4 rounded shadow-sm">
+                    @if (!string.IsNullOrEmpty(Model.FullName))
+                    {
+                        var fullName = $"{Model.FullName}";
+                        <h3 class="text-center text-danger">Bạn có chắc chắn muốn xóa khách hàng @fullName không?</h3>
+                    }
+                    <hr />
+                    <form asp-action="Delete" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <!-- ID sản phẩm -->
+                        <input type="hidden" asp-for="Id" />
+
+
+
+                        <div class="form-group d-flex">
+                            <h5 class="control-label mx-5">Tên danh mục</h5>
+                            <div class="" style="margin: 3px;">
+                                @Model.FullName
+                            </div>
+                        </div>
+                        <div class="form-group d-flex">
+                            <h5 class="control-label mx-5">Email</h5>
+                            <div class="" style="margin: 3px;">
+                                @Model.Email
+                            </div>
+                        </div>
+                        <div class="form-group d-flex">
+                            <h5 class="control-label mx-5">Số điện thoại</h5>
+                            <div class="" style="margin: 3px;">
+                                @Model.PhoneNumber
+                            </div>
+                        </div>
+                        <div class="form-group d-flex">
+                            <h5 class="control-label mx-5">Ngày sinh</h5>
+                            <div class="" style="margin: 3px;">
+                                @Model.DateOfBirth
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group text-center my-2">
+                            <a asp-action="Index" class="btn btn-secondary btn-lg ml-2">Quay lại</a>
+                            <input type="submit" value="Xóa" class="btn btn-danger btn-lg" />
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </div>
+</div> *@
+
+
+
+ @model GiaoDienAdmin.Models.Customer
+
+
+<div class="container mt-4">
+    <h2 class="text-center text-danger">@ViewData["Title"]</h2>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border p-4 rounded shadow-sm">
+
+                @if (!string.IsNullOrEmpty(Model.FullName))
+                {
+                    var fullName = $"{Model.FullName}";
+                    <h3 class="text-center text-danger">Bạn có chắc chắn muốn xóa khách hàng @fullName không?</h3>
+                }
+
+                <hr />
+                <form asp-action="Delete" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <!-- ID khách hàng -->
+                    <input type="hidden" asp-for="Id" />
+
+                    <!-- Hiển thị thông tin khách hàng -->
+                    <div class="form-group">
+                        <h5 class="control-label">Tên khách hàng</h5>
+                        <p>@Model.FullName</p>
+                    </div>
+
+                    <div class="form-group">
+                        <h5 class="control-label">Email</h5>
+                        <p>@Model.Email</p>
+                    </div>
+
+                    <div class="form-group">
+                        <h5 class="control-label">Số điện thoại</h5>
+                        <p>@Model.PhoneNumber</p>
+                    </div>
+
+                    <div class="form-group">
+                        <h5 class="control-label">Ngày sinh</h5>
+                        <p>@Model.DateOfBirth?.ToString("dd/MM/yyyy")</p>
+                    </div>
+
+                    <hr />
+
+                    <!-- Nút Quay lại và Xóa -->
+                    <div class="form-group text-center">
+                        <a href="@Url.Action("Index", "Customers", new { area = "Admin" })" class="btn btn-secondary ">Quay lại</a>
+                        <button type="submit" class="btn btn-danger ">Xóa</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+        .form-group .control-label {
+            font-weight: bold;
+        }
+
+        .form-group p {
+            margin-left: 15px;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+    .btn-lg {
+        padding: 0.75rem 1.25rem;
+    }
+
+    .row {
+        margin: 0 auto;
+    }
+
+    /* Tính năng cuộn khi nội dung dài */
+    .card {
+        max-height: 700px;
+        overflow-y: auto;
+    }
+
+    /* Cải thiện căn giữa các nút */
+    .btn-secondary, .btn-danger {
+        width: 45%;
+    }
+</style>

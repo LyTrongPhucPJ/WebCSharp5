@@ -1,0 +1,37 @@
+﻿/* Xóa khoảng cách hoặc viền không cần thiết */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Ngăn tràn ngang */
+}
+/* PhẦN SẢN PHẨM */
+.category-list {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    position: sticky;
+    top: 10px; /* Cách mép trên 10px */
+    max-height: 90vh; /* Giữ cho không quá dài */
+    overflow-y: auto; /* Nếu danh mục quá dài, cho phép cuộn */
+}
+
+.product-card {
+    border: none;
+    text-align: center;
+}
+
+    .product-card img {
+        width: 100%;
+        height: 100px;
+        text-align: center;
+        object-fit: contain;
+    }
+
+.btn-buy {
+    background-color: #0c6e36;
+    color: white;
+}
+
+    .btn-buy:hover {
+        background-color: #0a5b2d;
+    }

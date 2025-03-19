@@ -1,0 +1,157 @@
+﻿@* @model GiaoDienAdmin.Models.Product
+
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm";
+}
+@section DetailProductAdmin {
+    <div class="container mt-4">
+        <h1 class="text-center">@ViewData["Title"]</h1>
+
+        <div class="card">
+            <div class="card-header">
+                <h5>Thông tin chi tiết sản phẩm</h5>
+            </div>
+            <div class="card-body">
+
+                <dl class="row">
+                    <dt class="col-sm-2">Tên sản phẩm</dt>
+                    <dd class="col-sm-10">@Model.Name</dd>
+
+                    <dt class="col-sm-2">Giấ</dt>
+                    <dd class="col-sm-10">@Model.Price</dd>
+
+                    <dt class="col-sm-2">Ảnh sản phẩm</dt>
+                    <dd class="col-sm-10">
+                        @if (!string.IsNullOrEmpty(Model.Img))
+                        {
+                            var fullImageUrl = $"https://localhost:7195{Model.Img}";
+                            <img src="@fullImageUrl"
+                                 alt="@Model.Name" width="150" height="150"
+                                 style="object-fit: cover; border-radius: 5px;"
+                                 title="@Model.Name">
+                        }
+                    </dd>
+
+                    <dt class="col-sm-2">Ngày tạo</dt>
+                    <dd class="col-sm-10">@Model.CreatedDate.ToString("dd/MM/yyyy")</dd>
+
+                    <dt class="col-sm-2">Trạng thái</dt>
+                    <dd class="col-sm-10">@(@Model.IsActive ? "Đang hoạt động" : "Chưa hoạt động")</dd>
+
+                    <dt class="col-sm-2">Mô tả</dt>
+                    <dd class="col-sm-10">@Model.Description</dd>
+                </dl>
+
+                <!-- Nút Quay lại -->
+                <div class="form-group mt-3">
+                    <a href="@Url.Action("Index", "ProductsAdmin", new { area = "Admin" })" class="btn btn-secondary">Quay lại</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+    /* Thêm thanh cuộn cho toàn bộ bảng */
+    .table-responsive {
+        max-height: 600px; /* Giới hạn chiều cao của bảng */
+
+        overflow-y: auto; /* Cho phép cuộn dọc khi dữ liệu vượt quá chiều cao */
+        overflow-x: auto; /* Cho phép cuộn ngang khi bảng rộng */
+    }
+
+</style> *@
+
+
+@model GiaoDienAdmin.Models.Product
+
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm";
+}
+
+@section DetailProductAdmin {
+    <div class="container mt-4">
+        <h1 class="text-center">@ViewData["Title"]</h1>
+
+        <div class="card mx-auto" style="max-width: 800px;">
+            <div class="card-header">
+                <h5>Thông tin chi tiết sản phẩm</h5>
+            </div>
+            <div class="card-body">
+
+                <dl class="row">
+                    <dt class="col-sm-3">Tên sản phẩm</dt>
+                    <dd class="col-sm-9">@Model.Name</dd>
+
+                    <dt class="col-sm-3">Giá</dt>
+                    <dd class="col-sm-9">@Model.Price.ToString("F3") <sup>đ</sup></dd>
+
+                    <dt class="col-sm-3">Ảnh sản phẩm</dt>
+                    <dd class="col-sm-9">
+                        @if (!string.IsNullOrEmpty(Model.Img))
+                        {
+                            var fullImageUrl = $"https://localhost:7195{Model.Img}";
+                            <img src="@fullImageUrl"
+                                 alt="@Model.Name" class="img-fluid rounded" style="max-width: 150px;">
+                        }
+                    </dd>
+
+                    <dt class="col-sm-3">Ngày tạo</dt>
+                    <dd class="col-sm-9">@Model.CreatedDate.ToString("dd/MM/yyyy")</dd>
+
+                    <dt class="col-sm-3">Trạng thái</dt>
+                    <dd class="col-sm-9">@(@Model.IsActive ? "Đang hoạt động" : "Chưa hoạt động")</dd>
+
+                    <dt class="col-sm-3">Mô tả</dt>
+                    <dd class="col-sm-9">@Model.Description</dd>
+                </dl>
+
+                <!-- Nút Quay lại -->
+                <div class="form-group mt-1 text-center">
+                    <a href="@Url.Action("Index", "ProductsAdmin", new { area = "Admin" })" class="btn btn-secondary btn-lg">Quay lại</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+    /* Giới hạn chiều rộng card và căn giữa */
+    .card {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /* Cải thiện các khoảng cách giữa các trường */
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    /* Thêm khoảng cách giữa các phần tử trong danh sách */
+    .row {
+        margin-bottom: 10px;
+    }
+
+    /* Căn giữa nội dung trong card */
+    .card-body {
+        text-align: left;
+    }
+
+    .btn-lg {
+        padding: 0.75rem 1.5rem;
+    }
+
+    /* Cải thiện hình ảnh sản phẩm */
+    .img-fluid {
+        object-fit: cover;
+        border-radius: 5px;
+    }
+</style>

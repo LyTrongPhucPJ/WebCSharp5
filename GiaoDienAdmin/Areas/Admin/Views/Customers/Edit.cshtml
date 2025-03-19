@@ -1,0 +1,192 @@
+﻿@* 
+
+@model GiaoDienAdmin.Models.Customer
+
+@{
+    ViewData["Title"] = "Chỉnh sửa khách hàng";
+}
+
+<div class="container mt-4">
+    <h1>@ViewData["Title"]</h1>
+
+    <form asp-action="Edit" method="post">
+        <div class="card">
+            <div class="card-header">
+                <h5>Thông tin khách hàng</h5>
+            </div>
+            <div class="card-body">
+
+                <!-- ID -->
+                <input type="hidden" name="Id" value="@Model.Id" />
+
+                <!-- Tên khách hàng -->
+                <div class="form-group">
+                    <label asp-for="FullName" class="control-label">Tên khách hàng</label>
+                    <input asp-for="FullName" class="form-control" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label">Email</label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <!-- Số điện thoại (chỉ đọc) -->
+                <div class="form-group">
+                    <label asp-for="PhoneNumber" class="control-label">Số điện thoại</label>
+                    <input asp-for="PhoneNumber" class="form-control" readonly />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <!-- Ngày sinh -->
+                <div class="form-group">
+                    <label asp-for="DateOfBirth" class="control-label">Ngày sinh</label>
+                    <input asp-for="DateOfBirth" class="form-control" type="date" />
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+
+                <!-- Địa chỉ -->
+                <div class="form-group">
+                    <label asp-for="Address" class="control-label">Địa chỉ</label>
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+
+                <!-- Trạng thái -->
+                <div class="form-group">
+                    <label for="IsActive">Trạng thái</label>
+                    <input type="checkbox" class="form-check-input" id="IsActive" name="IsActive" data-toggle="toggle" @(Model.IsActive ? "checked" : "") data-on="Hoạt động" data-off="Không hoạt động">
+                </div>
+
+
+
+                <!-- Nút Lưu và Quay lại -->
+                <div class="form-group mt-3">
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                    <a href="@Url.Action("Index", "Customers", new { area = "Admin" })" class="btn btn-secondary">Quay lại</a>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+ *@
+
+
+
+@model GiaoDienAdmin.Models.Customer
+
+@{
+    ViewData["Title"] = "Chỉnh sửa khách hàng";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center">@ViewData["Title"]</h2>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border p-4 rounded shadow-sm" style="max-height: 700px; overflow-y: auto;">
+                <form asp-action="Edit" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <!-- ID khách hàng -->
+                    <input type="hidden" name="Id" value="@Model.Id" />
+
+                    <!-- Tên khách hàng -->
+                    <div class="form-group">
+                        <label asp-for="FullName" class="control-label">Tên khách hàng</label>
+                        <input asp-for="FullName" class="form-control" />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label">Email</label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <!-- Số điện thoại (chỉ đọc) -->
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber" class="control-label">Số điện thoại</label>
+                        <input asp-for="PhoneNumber" class="form-control" readonly />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+
+                    <!-- Ngày sinh -->
+                    <div class="form-group">
+                        <label asp-for="DateOfBirth" class="control-label">Ngày sinh</label>
+                        <input asp-for="DateOfBirth" class="form-control" type="date" />
+                        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                    </div>
+
+                    <!-- Địa chỉ -->
+                    <div class="form-group">
+                        <label asp-for="Address" class="control-label">Địa chỉ</label>
+                        <input asp-for="Address" class="form-control" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+
+                    <!-- Trạng thái -->
+                    <div class="form-group">
+                        <label for="IsActive">Trạng thái</label>
+                        <input type="checkbox" class="form-check-input" id="IsActive" name="IsActive" data-toggle="toggle" @(Model.IsActive ? "checked" : "") data-on="Hoạt động" data-off="Không hoạt động">
+                    </div>
+
+                    <!-- Nút Lưu và Quay lại -->
+                    <div class="form-group text-center mt-3">
+                        <a href="@Url.Action("Index", "Customers", new { area = "Admin" })" class="btn btn-secondary btn-lg">Quay lại</a>
+                        <button type="submit" class="btn btn-primary btn-lg">Lưu</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+        .form-group .control-label {
+            font-weight: bold;
+        }
+
+        .form-group .text-danger {
+            font-size: 1rem;
+        }
+
+    .btn-lg {
+        padding: 0.75rem 1.25rem;
+    }
+
+    .container {
+        max-width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .row {
+        margin: 0 auto;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 45%;
+        margin: 10px;
+    }
+
+    /* Tính năng cuộn khi nội dung dài */
+    .card {
+        max-height: 700px; /* Giới hạn chiều cao */
+        overflow-y: auto; /* Cho phép cuộn dọc */
+    }
+</style>

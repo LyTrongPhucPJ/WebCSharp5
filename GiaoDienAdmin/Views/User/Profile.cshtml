@@ -1,0 +1,194 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Sử dụng Layout chung nếu có
+}
+
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f9f6f1;
+    }
+
+    /* Bố cục chính */
+    .profile-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px; /* Thêm padding để phần chứa profile lớn lên */
+    }
+
+    /* Cập nhật profile-card */
+    .profile-card {
+        display: flex;
+        background: url('/Img/nen1.jpg'); /* Đường dẫn ảnh */
+        background-size: cover;
+        background-position: center;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 40px; /* Tăng padding để card có không gian rộng hơn */
+        width: 90%; /* Giữ chiều rộng card */
+        max-width: 1500px; /* Tăng max-width để card không bị quá nhỏ */
+        min-height: 550px; /* Tăng chiều cao tối thiểu */
+        color: white; /* Để chữ hiển thị rõ */
+    }
+
+
+
+    /* Cột bên trái */
+    .left-panel {
+        width: 35%; /* Tăng chiều rộng của cột bên trái */
+        padding: 20px;
+        background: #fdf7f1;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 20px; /* Khoảng cách giữa cột trái và phải */
+    }
+
+    /* Tên người dùng */
+    .user-name {
+        font-size: 22px; /* Tăng kích thước tên người dùng */
+        color: #c0392b;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    /* Nút "Nạp vào ví" */
+    .btn-wallet {
+        background: #f39c12;
+        color: white;
+        font-weight: bold;
+        padding: 12px;
+        border-radius: 20px;
+        width: 100%;
+        cursor: pointer;
+    }
+
+        .btn-wallet:hover {
+            background: #e67e22;
+        }
+
+    /* Menu điều hướng */
+    .left-menu {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu-item {
+        width: 100%;
+        padding: 12px;
+        background: #e67e22;
+        color: white;
+        text-align: center;
+        border-radius: 20px;
+        text-decoration: none; /* Xóa gạch chân */
+        margin: 5px 0;
+    }
+
+        .menu-item.active {
+            background: #c0392b;
+        }
+
+        .menu-item:hover {
+            background: #f39c12;
+            text-decoration: none;
+            color: aliceblue;
+        }
+
+    /* Cột bên phải */
+    .right-panel {
+        width: 60%; /* Giảm kích thước cột bên phải */
+        padding: 20px;
+    }
+
+
+        /* Tiêu đề "Thông tin tài khoản" */
+        .right-panel h4 {
+            font-size: 35px; /* Kích thước chữ lớn */
+            text-align: center;
+            color: #333;
+            font-weight: bold;
+            margin-top: -36px; /* Kéo tiêu đề lên cao thêm */
+        }
+
+    /* Thông tin tài khoản */
+    .info-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .info-item {
+        font-size: 16px;
+        color: #333;
+        flex-grow: 1;
+    }
+
+    /* Nút đã liên kết */
+    .btn-disabled {
+        background: #d5d5d5;
+        color: #888;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: not-allowed;
+    }
+
+    /* Nút đổi mật khẩu */
+    .btn-danger {
+        background: #e74c3c;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+
+
+</style>
+
+<div class="profile-container">
+    <div class="profile-card">
+        <!-- Cột bên trái -->
+        <div class="left-panel">
+            <h5 class="user-name">@ViewBag.UserName</h5>
+
+
+            <div class="left-menu">
+
+                <a href="#" class="menu-item">Lịch sử giao dịch</a>
+            </div>
+        </div>
+
+        <!-- Cột bên phải -->
+        <div class="right-panel">
+            <h4>Thông tin tài khoản</h4>
+            <hr />
+            <div class="info-group">
+                <p class="info-item"><strong>Tên người dùng:</strong> @ViewBag.UserName</p>
+                <button class="btn-disabled">Đã liên kết</button>
+            </div>
+            <div class="info-group">
+                <p class="info-item"><strong>Email liên kết:</strong> @ViewBag.UserEmail</p>
+                <button class="btn-disabled">Đã liên kết</button>
+            </div>
+            <hr />
+            <div class="btn-group">
+                <form method="post" asp-action="ChangePassword">
+                    <button type="submit" class="btn-danger">Đổi mật khẩu</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

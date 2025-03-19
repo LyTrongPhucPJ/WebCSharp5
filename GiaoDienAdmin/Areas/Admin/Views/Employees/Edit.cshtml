@@ -1,0 +1,208 @@
+﻿@* @model GiaoDienAdmin.Models.Employee
+
+@{
+    ViewData["Title"] = "Chỉnh sửa nhân viên";
+}
+
+<div class="container mt-4">
+    <h4 class="text-center">Chỉnh sửa nhân viên</h4>
+    <hr />
+    <div class="table-responsive">
+        <!-- Form trong container với viền xung quanh -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="border p-4 rounded shadow-sm">
+                    <form asp-action="Edit" method="post">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Thông tin nhân viên</h5>
+                            </div>
+                            <div class="card-body">
+
+                                <!-- Tên nhân viên -->
+                                <div class="form-group">
+                                    <label asp-for="FullName" class="control-label">Tên nhân viên</label>
+                                    <input asp-for="FullName" class="form-control" />
+                                    <span asp-validation-for="FullName" class="text-danger"></span>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="form-group">
+                                    <label asp-for="Email" class="control-label">Email</label>
+                                    <input asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+
+                                <!-- Số điện thoại -->
+                                <div class="form-group">
+                                    <label asp-for="PhoneNumber" class="control-label">Số điện thoại</label>
+                                    <input asp-for="PhoneNumber" class="form-control" readonly />
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+
+                                <!-- Ngày sinh -->
+                                <div class="form-group">
+                                    <label asp-for="DateOfBirth" class="control-label">Ngày sinh</label>
+                                    <input asp-for="DateOfBirth" class="form-control" type="date" />
+                                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                                </div>
+
+                                <!-- Địa chỉ -->
+                                <div class="form-group">
+                                    <label asp-for="Address" class="control-label">Địa chỉ</label>
+                                    <input asp-for="Address" class="form-control" />
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+
+                                <!-- Vai trò -->
+                                <div class="form-group">
+                                    <label asp-for="RoleId" class="control-label">Vai trò</label>
+                                    <select asp-for="RoleId" class="form-control" asp-items="@(new SelectList(new[] {
+                        new { Value = 1, Text = "Admin" },
+                        new { Value = 2, Text = "Nhân viên" }}, "Value", "Text", Model.RoleId))">
+                                    </select>
+                                    <span asp-validation-for="RoleId" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="IsActive" class="control-label">Trạng thái</label>
+                                    <select asp-for="IsActive" class="form-control">
+                                        <option value="true" selected="@(Model.IsActive ? "selected" : null)">Hoạt động</option>
+                                        <option value="false" selected="@(Model.IsActive ? null : "selected")">Không hoạt động</option>
+                                    </select>
+                                    <span asp-validation-for="IsActive" class="text-danger"></span>
+                                </div>
+
+                                <!-- Nút lưu và quay lại nằm ngang nhau -->
+                                <div class="form-group text-center my-2">
+                                    <a asp-action="Index" class="btn btn-secondary ml-3">Quay lại</a>
+                                    <input type="submit" value="Lưu" class="btn btn-primary" />
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Thêm thanh cuộn cho toàn bộ bảng */
+    .table-responsive {
+        max-height: 600px; /* Giới hạn chiều cao của bảng */
+
+        overflow-y: auto; /* Cho phép cuộn dọc khi dữ liệu vượt quá chiều cao */
+        overflow-x: auto; /* Cho phép cuộn ngang khi bảng rộng */
+    }
+
+</style>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+ *@
+
+ @model GiaoDienAdmin.Models.Employee
+
+@{
+    ViewData["Title"] = "Chỉnh sửa nhân viên";
+}
+
+<div class="container mt-4">
+    <h4 class="text-center">Chỉnh sửa nhân viên</h4>
+    <hr />
+    <div class="table-responsive">
+        <!-- Form trong container với viền xung quanh -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="border p-4 rounded shadow-sm">
+                    <form asp-action="Edit" method="post">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Thông tin nhân viên</h5>
+                            </div>
+                            <div class="card-body">
+
+                                <!-- Tên nhân viên -->
+                                <div class="form-group">
+                                    <label asp-for="FullName" class="control-label">Tên nhân viên</label>
+                                    <input asp-for="FullName" class="form-control" />
+                                    <span asp-validation-for="FullName" class="text-danger"></span>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="form-group">
+                                    <label asp-for="Email" class="control-label">Email</label>
+                                    <input asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+
+                                <!-- Số điện thoại -->
+                                <div class="form-group">
+                                    <label asp-for="PhoneNumber" class="control-label">Số điện thoại</label>
+                                    <input asp-for="PhoneNumber" class="form-control" readonly />
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+
+                                <!-- Ngày sinh -->
+                                <div class="form-group">
+                                    <label asp-for="DateOfBirth" class="control-label">Ngày sinh</label>
+                                    <input asp-for="DateOfBirth" class="form-control" type="date" />
+                                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                                </div>
+
+                                <!-- Địa chỉ -->
+                                <div class="form-group">
+                                    <label asp-for="Address" class="control-label">Địa chỉ</label>
+                                    <input asp-for="Address" class="form-control" />
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+
+                                <!-- Vai trò -->
+                                <div class="form-group">
+                                    <label asp-for="RoleId" class="control-label">Vai trò</label>
+                                    <select asp-for="RoleId" class="form-control" asp-items="@(new SelectList(new[] {
+                        new { Value = 1, Text = "Admin" },
+                        new { Value = 2, Text = "Nhân viên" }}, "Value", "Text", Model.RoleId))">
+                                    </select>
+                                    <span asp-validation-for="RoleId" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="IsActive" class="control-label">Trạng thái</label>
+                                    <select asp-for="IsActive" class="form-control">
+                                        <option value="true" selected="@(Model.IsActive ? "selected" : null)">Hoạt động</option>
+                                        <option value="false" selected="@(Model.IsActive ? null : "selected")">Không hoạt động</option>
+                                    </select>
+                                    <span asp-validation-for="IsActive" class="text-danger"></span>
+                                </div>
+
+                                <!-- Nút lưu và quay lại nằm ngang nhau -->
+                                <div class="form-group text-center my-2">
+                                    <a asp-action="Index" class="btn btn-secondary ml-3">Quay lại</a>
+                                    <input type="submit" value="Lưu" class="btn btn-primary" />
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Thêm thanh cuộn cho toàn bộ bảng */
+    .table-responsive {
+        max-height: 600px; /* Giới hạn chiều cao của bảng */
+
+        overflow-y: auto; /* Cho phép cuộn dọc khi dữ liệu vượt quá chiều cao */
+        overflow-x: auto; /* Cho phép cuộn ngang khi bảng rộng */
+    }
+
+</style>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

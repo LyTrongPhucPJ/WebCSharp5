@@ -1,0 +1,118 @@
+﻿
+ @model GiaoDienAdmin.Models.Employee
+
+@{
+    ViewData["Title"] = "Thêm mới nhân viên";
+}
+
+@foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+{
+    <div class="alert alert-danger">
+        @error.ErrorMessage
+    </div>
+}
+
+
+<div class="container mt-4">
+    <h4 class="text-center">Thêm nhân viên</h4>
+    <hr />
+    <div class="table-responsive">
+        <!-- Form trong container với viền xung quanh -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="border p-4 rounded shadow-sm">
+
+                    <form asp-action="Create" method="post">
+                        <div class="card">
+
+                            <div class="card-body">
+
+                                <!-- Tên nhân viên -->
+                                <div class="form-group">
+                                    <label asp-for="FullName" class="control-label">Tên nhân viên</label>
+                                    <input asp-for="FullName" class="form-control" />
+                                    <span asp-validation-for="FullName" class="text-danger"></span>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="form-group">
+                                    <label asp-for="Email" class="control-label">Email</label>
+                                    <input asp-for="Email" type="email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+
+                                <!-- Số điện thoại -->
+                                <div class="form-group">
+                                    <label asp-for="PhoneNumber" class="control-label">Số điện thoại</label>
+                                    <input asp-for="PhoneNumber" type="number" class="form-control" />
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+
+                                @*  <!-- Mật khẩu -->
+                                <div class="form-group">
+                                <label asp-for="PassWord" class="control-label">Mật khẩu</label>
+                                <input asp-for="PassWord" class="form-control" type="password" />
+                                <span asp-validation-for="PassWord" class="text-danger"></span>
+                                </div> *@
+
+                                <!-- Ngày sinh -->
+                                <div class="form-group">
+                                    <label asp-for="DateOfBirth" class="control-label">Ngày sinh</label>
+                                    <input asp-for="DateOfBirth" class="form-control" type="date" />
+                                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                                </div>
+
+                                <!-- Địa chỉ -->
+                                <div class="form-group">
+                                    <label asp-for="Address" class="control-label">Địa chỉ</label>
+                                    <input asp-for="Address" class="form-control" />
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+
+                                <!-- Vai trò -->
+                                <div class="form-group">
+                                    <label asp-for="RoleId" class="control-label">Vai trò</label>
+                                    <select asp-for="RoleId" class="form-control">
+                                        <option value="">Chọn vai trò</option>
+                                        <option value="1">Admin</option>
+                                        <option value="2">Nhân viên</option>
+                                    </select>
+                                    <span asp-validation-for="RoleId" class="text-danger"></span>
+                                </div>
+
+                                <!-- Trạng thái -->
+                                <div class="form-group">
+                                    <label asp-for="IsActive" class="control-label">Trạng thái</label>
+                                    <div class="form-check">
+                                        <input type="checkbox" asp-for="IsActive" class="form-check-input" />
+                                        <label class="form-check-label">Hoạt động</label>
+                                    </div>
+                                    <span asp-validation-for="IsActive" class="text-danger"></span>
+                                </div>
+
+                                <!-- Nút lưu và quay lại -->
+                                <div class="form-group mt-3 text-center">
+                                    <a href="@Url.Action("Index", "Employees", new { area = "Admin" })" class="btn btn-secondary">Quay lại</a>
+                                    <button type="submit" class="btn btn-primary">Lưu</button>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Thêm thanh cuộn cho toàn bộ bảng */
+    .table-responsive {
+        max-height: 600px; /* Giới hạn chiều cao của bảng */
+
+        overflow-y: auto; /* Cho phép cuộn dọc khi dữ liệu vượt quá chiều cao */
+        overflow-x: auto; /* Cho phép cuộn ngang khi bảng rộng */
+    }
+
+</style>

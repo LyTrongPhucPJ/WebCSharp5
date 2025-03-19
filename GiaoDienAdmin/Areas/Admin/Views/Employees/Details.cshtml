@@ -1,0 +1,116 @@
+﻿@model GiaoDienAdmin.Models.Employee
+
+@{
+    ViewData["Title"] = "Chi tiết nhân viên";
+}
+
+<div class="container mt-4">
+    <h4 class="text-center">@ViewData["Title"]</h4>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="border p-4 rounded shadow-sm">
+                <form asp-action="Details" method="post" enctype="multipart/form-data" class="w-100">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <!-- Tên nhân viên -->
+                    <div class="form-group row mb-3">
+                        <label class="col-sm-4 col-form-label font-weight-bold">Tên nhân viên</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-plaintext">@Model.FullName</p>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group row mb-3">
+                        <label class="col-sm-4 col-form-label font-weight-bold">Email</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-plaintext">@Model.Email</p>
+                        </div>
+                    </div>
+
+                    <!-- Số điện thoại -->
+                    <div class="form-group row mb-3">
+                        <label class="col-sm-4 col-form-label font-weight-bold">Số điện thoại</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-plaintext">@Model.PhoneNumber</p>
+                        </div>
+                    </div>
+
+                    <!-- Ngày sinh -->
+                    <div class="form-group row mb-3">
+                        <label class="col-sm-4 col-form-label font-weight-bold">Ngày sinh</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-plaintext">@Model.DateOfBirth?.ToString("dd/MM/yyyy")</p>
+                        </div>
+                    </div>
+
+                    <!-- Địa chỉ -->
+                    <div class="form-group row mb-3">
+                        <label class="col-sm-4 col-form-label font-weight-bold">Địa chỉ</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-plaintext">@Model.Address</p>
+                        </div>
+                    </div>
+
+                    <!-- Trạng thái -->
+                    <div class="form-group row mb-3">
+                        <label class="col-sm-4 col-form-label font-weight-bold">Trạng thái</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-plaintext">@(@Model.IsActive ? "Đang hoạt động" : "Chưa hoạt động")</p>
+                        </div>
+                    </div>
+
+                    <!-- Nút quay lại và chỉnh sửa -->
+                    <div class="form-group text-center my-3">
+                        <a asp-action="Index" class="btn btn-secondary btn-lg">Quay lại</a>
+                        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning btn-lg mx-2">Chỉnh sửa</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /* Căn giữa card */
+    .card {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+        .form-group .font-weight-bold {
+            font-weight: bold;
+        }
+
+    .form-control-plaintext {
+        margin-top: 3px;
+        font-size: 1.1rem;
+    }
+
+    .form-group .text-danger {
+        font-size: 1.2rem;
+    }
+
+    /* Giới hạn chiều cao của bảng nếu cần */
+    .table-responsive {
+        max-height: 600px;
+        overflow-y: auto;
+        overflow-x: auto;
+    }
+</style>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

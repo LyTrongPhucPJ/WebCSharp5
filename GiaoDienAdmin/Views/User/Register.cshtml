@@ -1,0 +1,219 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Ký</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/UserRegistration.css" asp-append-version="true" />
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-image"></div>
+        <div class="login-form">
+            <a href="@Url.Action("Index", "ProductCustomers")" class="home-icon" title="Trang chủ">
+                <i class="fa-solid fa-house"></i>
+            </a>
+
+            <a href="@Url.Action("LoginPhone", "User")" class="prev-icon" title="Quay lại đăng nhập">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+
+
+            <img src="~/img/Ảnh sản phẩm (1).png" alt="Logo Lion" />
+
+            <h1>Đăng Ký</h1>
+
+            <form method="post" action="@Url.Action("Register", "User")" id="registerForm">
+                <label for="fullName">Họ và Tên</label>
+                <input type="text" id="fullName" name="FullName" placeholder="Nhập họ và tên" required />
+
+                <label for="phone">Số Điện Thoại</label>
+                <input type="text" id="phone" name="PhoneNumber" placeholder="Nhập SĐT của bạn" required pattern="\d{10}" title="Số điện thoại phải có 10 chữ số" />
+                <span id="phoneError" class="text-danger"></span> <!-- Hiển thị lỗi số điện thoại -->
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="Email" placeholder="Nhập email của bạn" required />
+                <span id="emailError" class="text-danger"></span> <!-- Hiển thị lỗi email -->
+
+                <label for="password">Mật khẩu</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" name="Password" placeholder="Nhập mật khẩu" required minlength="6" />
+                    <i class="fa-solid fa-eye-slash togglePassword"></i>
+                </div>
+
+                <label for="confirmPassword">Xác nhận mật khẩu</label>
+                <div class="password-wrapper">
+                    <input type="password" id="confirmPassword" placeholder="Xác nhận mật khẩu" required />
+                    <i class="fa-solid fa-eye-slash togglePassword"></i>
+                </div>
+                <span id="confirmPasswordError" class="text-danger"></span>
+
+                <div class="register-link">
+                    <p>Khách hàng đăng ký Hội Viên Phúc Long cũng sẽ trở thành Hội Viên Win.</p>
+                    <label for="agree" class="checkbox-label">
+                        <input type="checkbox" id="agree" name="agree" required />
+                        Tôi đồng ý
+                    </label>
+                </div>
+
+                <button type="submit" id="registerBtn">ĐĂNG KÝ</button>
+                <div class="register-link">
+                    Bạn đã có tài khoản ? <a href="/User/LoginPhone">Đăng nhập</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+        // Hiển thị / Ẩn mật khẩu
+        document.querySelectorAll(".togglePassword").forEach(item => {
+            item.addEventListener("click", function () {
+                let passwordField = this.previousElementSibling;
+                const type = passwordField.type === "password" ? "text" : "password";
+                passwordField.type = type;
+                this.classList.toggle("fa-eye");
+                this.classList.toggle("fa-eye-slash");
+            });
+        });
+
+        // Kiểm tra xác nhận mật khẩu trước khi submit
+        document.getElementById("confirmPassword").addEventListener("input", function () {
+            let password = document.getElementById("password").value;
+            let confirmPassword = this.value;
+            let errorSpan = document.getElementById("confirmPasswordError");
+
+            if (password !== confirmPassword) {
+                errorSpan.textContent = "Mật khẩu xác nhận không khớp!";
+            } else {
+                errorSpan.textContent = "";
+            }
+        });
+
+
+            // Kiểm tra email đã tồn tại
+            document.getElementById("email").addEventListener("blur", function () {
+                let email = this.value;
+            fetch(`/User/CheckEmailExists?email=${email}`)
+                    .then(response => response.json())
+                    .then(exists => {
+                let emailError = document.getElementById("emailError");
+            if (exists) {
+                emailError.textContent = "❌ Email đã tồn tại!";
+                        } else {
+                emailError.textContent = "";
+                        }
+                    });
+            });
+
+            // Kiểm tra số điện thoại đã tồn tại
+            document.getElementById("phone").addEventListener("blur", function () {
+                let phone = this.value;
+            fetch(`/User/CheckPhoneExists?phone=${phone}`)
+                    .then(response => response.json())
+                    .then(exists => {
+                let phoneError = document.getElementById("phoneError");
+            if (exists) {
+                phoneError.textContent = "❌ Số điện thoại đã được đăng ký!";
+                        } else {
+                phoneError.textContent = "";
+                        }
+                    });
+            });
+
+            // Kiểm tra xác nhận mật khẩu trước khi submit
+            document.getElementById("confirmPassword").addEventListener("input", function () {
+                let password = document.getElementById("password").value;
+            let confirmPassword = this.value;
+            let errorSpan = document.getElementById("confirmPasswordError");
+
+            if (password !== confirmPassword) {
+                errorSpan.textContent = "❌ Mật khẩu xác nhận không khớp!";
+                } else {
+                errorSpan.textContent = "";
+                }
+            });
+
+            // Kiểm tra checkbox trước khi submit
+            document.getElementById("registerForm").addEventListener("submit", function (event) {
+                let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+            let agree = document.getElementById("agree").checked;
+            let confirmPasswordError = document.getElementById("confirmPasswordError");
+
+            if (password !== confirmPassword) {
+                confirmPasswordError.textContent = "❌ Mật khẩu xác nhận không khớp!";
+            event.preventDefault();
+                }
+
+            if (!agree) {
+                alert("❌ Bạn phải đồng ý với điều khoản trước khi đăng ký.");
+            event.preventDefault();
+                }
+            });
+    </script>
+</body>
+</html>
+
+<style>
+    /* Tối ưu lại giao diện */
+    .login-container {
+        display: flex;
+        justify-content: space-between;
+        height: auto;
+        min-height: 600px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .password-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+        .password-wrapper input {
+            flex: 1;
+            padding-right: 30px;
+        }
+
+        .password-wrapper .togglePassword {
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+        }
+
+    .checkbox-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    #confirmPasswordError {
+        color: red;
+        font-size: 0.9em;
+    }
+
+    button {
+        background-color: #ff6600;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        font-weight: bold;
+    }
+
+        button:hover {
+            background-color: #e65c00;
+        }
+</style>

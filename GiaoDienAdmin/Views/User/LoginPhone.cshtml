@@ -1,0 +1,67 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng Nhập</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+          rel="stylesheet" />
+    <!-- Thêm Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="login-container">
+        <!-- Phần bên trái: Hình ảnh -->
+        <div class="login-image"></div>
+        <!-- Phần bên phải: Form -->
+        <div class="login-form">
+            <!-- Icon trang chủ -->
+            <a href="@Url.Action("Index", "ProductCustomers")" class="home-icon" title="Trang chủ">
+                <i class="fa-solid fa-house"></i>
+            </a>
+            <img src="~/img/Ảnh sản phẩm (1).png" alt="Logo Lion" />
+            <h1>Lion Xin Chào</h1>
+            <form asp-action="LoginPhone" method="post">
+                <label for="phone" style="color: rgb(0, 0, 0); font-weight: bold">Số điện thoại</label>
+                <div class="password-wrapper mb-2">
+                    <input type="text"
+                           name="phoneNumber"
+                           placeholder="Nhập số điện thoại*"
+                           required />
+                </div>
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-danger">
+                        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                        {
+                            <p>@error.ErrorMessage</p>
+                        }
+                    </div>
+                }
+                <button type="submit">Tiếp tục</button>
+                <div class="register-link">
+                    Bạn có tài khoản chưa? <a  href="/User/Register">Đăng ký</a>
+                </div>
+                <div class="register-link text-center text-danger">
+                    <p>
+                        *Nhập sai quá 5 lần sẽ bị khóa tài khoản
+                    </p>
+                    <p>
+                        Vui lòng ấn "Quên mật
+                        khẩu" nếu cần lấy lại mật khẩu
+                    </p>
+                </div>
+                <div class=" register-link text-center">
+                    <a style="text-decoration:underline;" href="/Otp/ConfirmEmail">Bạn quên mật khẩu?</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>
