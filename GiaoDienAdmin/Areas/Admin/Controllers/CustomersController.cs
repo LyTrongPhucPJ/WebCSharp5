@@ -15,14 +15,12 @@ namespace GiaoDienAdmin.Areas.Admin.Controllers
             _customerService = customerService;
         }
 
-        // GET: Admin/Customers
         public async Task<IActionResult> Index()
         {
             var customers = await _customerService.GetCustomersAsync();
             return View(customers);
         }
 
-        // GET: Admin/Customers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
@@ -33,20 +31,17 @@ namespace GiaoDienAdmin.Areas.Admin.Controllers
             return View(customer);
         }  
 
-        // GET: Admin/Customers/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Customers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Customer customer)
         {
             if (ModelState.IsValid)
             {
-                // Kiểm tra Model có phải null không trước khi xử lý
                 if (customer == null)
                 {
                     ModelState.AddModelError("", "Dữ liệu khách hàng không hợp lệ.");
@@ -66,8 +61,6 @@ namespace GiaoDienAdmin.Areas.Admin.Controllers
             return View(customer);
         }
 
-
-        // GET: Admin/Customers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -86,7 +79,6 @@ namespace GiaoDienAdmin.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                // IsActive sẽ là true hoặc false dựa trên việc checkbox có được chọn hay không
                 customer.IsActive = customer.IsActive;
 
                 var result = await _customerService.UpdateCustomerAsync(id, customer);
@@ -102,7 +94,6 @@ namespace GiaoDienAdmin.Areas.Admin.Controllers
             return View(customer);
         }
 
-        // GET: Admin/Customers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
@@ -113,7 +104,6 @@ namespace GiaoDienAdmin.Areas.Admin.Controllers
             return View(customer);
         }
 
-        // POST: Admin/Customers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -1,5 +1,4 @@
 ﻿
-/* Reset CSS */
 * {
     margin: 0;
     padding: 0;
@@ -26,13 +25,11 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Phần hình ảnh bên trái */
 .login-image {
     flex: 1;
     background: url("../img/logo.jpg") no-repeat center center/cover;
 }
 
-/* Phần form bên phải */
 .login-form {
     flex: 1;
     padding: 40px;
@@ -118,7 +115,6 @@ body {
                 text-decoration: underline;
             }
 
-/* Icon trang chủ */
 .home-icon {
     position: absolute;
     top: 20px;

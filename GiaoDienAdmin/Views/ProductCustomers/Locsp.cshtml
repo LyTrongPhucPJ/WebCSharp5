@@ -2,21 +2,18 @@
 
 @{
     var categories = ViewBag.Categories as List<GiaoDienAdmin.Models.ProductCategories>;
-    var selectedCategory = ViewBag.SelectedCategory as string; // Lấy tên danh mục được chọn từ ViewBag
+    var selectedCategory = ViewBag.SelectedCategory as string;
 }
-<!-- Navigation Links -->
 <div class="bg-white">
     <div class="container">
         <ul class="nav justify-content-center py-2">
             <li class="nav-item">
                 <a class="nav-link" href="https://localhost:7046/ProductCustomers/Index">TRANG CHỦ</a>
             </li>
-            <!-- Cửa sổ của Menu -->
             <li class="nav-item dropdown">
                 <a class="nav-link" href="https://localhost:7046/ProductCustomers/Locsp" id="menuDropdown">MENU</a>
                 <div class="dropdown-menu" id="menuList">
                     <div class="menu-columns">
-                        <!-- Cột trái -->
                         <ul class="left-menu">
                             <li>
                                 <a class="dropdown-item text-success mb-5" href="#">HỘP QUÀ TẾT "MÙA HOA NỞ"</a>
@@ -31,7 +28,6 @@
                                 }
                             </li>
                         </ul>
-                        <!-- Cột phải -->
                         <ul class="right-menu">
                             <li>
                                 <a class="dropdown-item text-success" href="@Url.Action("LocspNuoc", "ProductCustomers")">THỨC UỐNG</a>
@@ -48,12 +44,10 @@
                     </div>
                 </div>
             </li>
-            <!-- Cửa sổ của sản phẩm -->
             <li class="nav-item dropdown">
                 <a class="nav-link" href="https://localhost:7046/ProductCustomers/Locsp1" id="menuDropdown">SẢN PHẨM ĐÓNG GÓI</a>
                 <div class="dropdown-menu-product" id="menuList">
                     <div class="menu-columns">
-                        <!-- Cột trái -->
                         <ul class="left-menu">
                             <li>
                                 <a class="dropdown-item text-success" href="@Url.Action("LocspTra", "ProductCustomers")">TRÀ</a>
@@ -65,7 +59,6 @@
                                 }
                             </li>
                         </ul>
-                        <!-- Cột phải -->
                         <ul class="right-menu">
                             <li>
                                 <a class="dropdown-item text-success" href="@Url.Action("LocspCaPhe", "ProductCustomers")">CÀ PHÊ</a>
@@ -80,12 +73,10 @@
                     </div>
                 </div>
             </li>
-            <!-- Cửa sổ về chúng tôi -->
             <li class="nav-item dropdown">
                 <a class="nav-link" href="#" id="menuDropdown">VỀ CHÚNG TÔI</a>
                 <div class="dropdown-menu-about" id="menuList">
                     <div class="menu-rows">
-                        <!-- CÁC TIÊU ĐỀ KẾ BÊN NHAU -->
                         <div class="menu-section">
                             <a class="dropdown-title text-success" href="#">CÀ PHÊ</a>
                             <a class="dropdown-item" href="#">Hành trình tách cà phê</a>
@@ -130,7 +121,6 @@
 </div>
 
 <div class="container mt-4">
-    <!-- Breadcrumb -->
     <nav>
         <ol class="breadcrumb">
             <a href="https://localhost:7046/ProductCustomers/Index" style="    text-decoration: none;
@@ -141,7 +131,6 @@
     </nav>
 
     <div class="row">
-        <!-- Danh mục sản phẩm -->
         <div class="col-md-3">
             <div class="category-list p-3" style="border: 1px solid gray; border-radius: 5px; padding: 10px; background-color: #fff;">
                 <h6 class="fw-bold text-success">
@@ -150,7 +139,6 @@
 
                 <p>Hộp quà tết "mùa hoa nở"</p>
 
-                <!-- Danh mục "Thức uống" -->
                 <h6 class="text-success">
                     <a href="https://localhost:7046/ProductCustomers/LocspNuoc" class="text-success text-decoration-none">Thức Uống</a>
                 </h6>
@@ -164,7 +152,6 @@
                     }
                 </ul>
 
-                <!-- Danh mục "Bánh" -->
                 <h6 class="text-success">
                     <a href="https://localhost:7046/ProductCustomers/LocspBanh" class="text-success text-decoration-none">Bánh</a>
                 </h6>
@@ -180,14 +167,12 @@
             </div>
         </div>
 
-        <!-- Sản phẩm -->
         <div class="col-md-9">
             @if (!string.IsNullOrEmpty(selectedCategory))
             {
                 <h5 class="text-success">@selectedCategory</h5>
             }
 
-            <!-- Hiển thị sản phẩm theo danh mục -->
             @foreach (var category in categories)
             {
                 var productsInCategory = Model.Where(p => p.CategoryId == category.Id).ToList();
@@ -202,13 +187,11 @@
                                     <a href="@Url.Action("Details", "ProductCustomers", new { id = product.Id })" class="product-link">
                                         @if (!string.IsNullOrEmpty(product.Img))
                                         {
-                                            // Fetching image from API
                                             var fullImageUrl = $"https://localhost:7195{product.Img}";
                                             <img src="@fullImageUrl" alt="@product.Name" class="img-fluid" style="object-fit: cover; height: 200px; width: 100%; border-radius: 5px;" />
                                         }
                                         else
                                         {
-                                            // Default image if none exists
                                             <img src="/images/default-placeholder.png" alt="Ảnh mặc định" class="img-fluid" style="height: 200px; width: 100%; opacity: 0.5; border-radius: 5px;" />
                                         }
                                     </a>

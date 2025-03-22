@@ -1,0 +1,223 @@
+﻿<style>
+    /* Step Progress Header */
+    .step-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 40px 0;
+        gap: 20px;
+    }
+
+    .step {
+        position: relative;
+        flex: 1;
+        text-align: center;
+        font-weight: bold;
+        font-size: 16px;
+        padding: 15px;
+        background-color: #dc3545;
+        color: #fff;
+        border-radius: 10px;
+        z-index: 1;
+    }
+
+        .step.active {
+            background-color: orange;
+            color: white;
+        }
+
+        .step.completed {
+            background-color: #dc3545;
+            color: white;
+        }
+
+            .step.completed .circle {
+                background-color: white;
+                color: #dc3545;
+                border: 2px solid #dc3545;
+            }
+
+        .step .circle {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            position: absolute;
+            top: -18px;
+            left: calc(50% - 17.5px);
+            border: 2px solid black;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -10%;
+            transform: translateY(-50%);
+            width: 20%;
+            height: 2px;
+            background-color: white;
+            z-index: 0;
+        }
+
+
+    .details-summary {
+        background-color: #f8f4e8;
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .order-summary h5 {
+        font-weight: bold;
+    }
+
+    .order-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px dashed #ccc;
+        padding: 10px 0;
+    }
+
+        .order-item img {
+            width: 70px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+    .total-price {
+        font-size: 20px;
+        font-weight: bold;
+        color: #dc3545;
+    }
+
+    .total-text {
+        font-weight: bold;
+    }
+
+    .note {
+        font-style: italic;
+        color: #888;
+    }
+
+    .btn-custom {
+        padding: 10px 20px;
+    }
+
+    .alert-box {
+        border: 1px solid black;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+</style>
+
+<div class="container mt-4">
+    <!-- Step Progress -->
+    <div class="step-header">
+        <div class="step completed">
+            <div class="circle">✔</div>
+            THÔNG TIN KHÁCH HÀNG
+        </div>
+        <div class="step active">
+            <div class="circle">2</div>
+            THÔNG TIN ĐƠN HÀNG
+        </div>
+        <div class="step">
+            <div class="circle">3</div>
+            HOÀN TẤT THANH TOÁN
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Nội dung bên trái -->
+        <div class="col-md-7">
+            <!-- Phương Thức Thanh Toán -->
+            <h4 class="mb-4">PHƯƠNG THỨC THANH TOÁN</h4>
+            <form>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="radio" name="payment" id="cash" checked>
+                    <label class="form-check-label" for="cash">Tiền Mặt</label>
+                </div>
+                <div class="form-check mb-4">
+                    <input class="form-check-input" type="radio" name="payment" id="wallet">
+                    <label class="form-check-label" for="wallet">Thanh toán VNPAY</label>
+                </div>
+            </form>
+
+            <!-- Lưu ý -->
+            <div class="alert-box">
+                <p class="mb-2"><b>Lưu ý cho trường hợp hủy đơn hàng:</b></p>
+                <p>Đơn hàng hủy của quý khách sẽ được ghi nhận xử lý và thời gian quý khách sẽ được hoàn tiền theo quy định của ngân hàng phát hành thẻ như sau:</p>
+                <ul>
+                    <li>Thẻ nội địa/Ví điện tử/Tài khoản ngân hàng: từ 10 - 14 ngày làm việc.</li>
+                    <li>Thẻ quốc tế: từ 8 - 17 ngày làm việc.</li>
+                </ul>
+                <p class="mb-0"><i>**Ngày làm việc: Không bao gồm Thứ 7, CN, Lễ.</i></p>
+            </div>
+
+            <!-- Nút -->
+            <div class="d-flex justify-content-end mt-4 gap-2">
+                <a href="/Payment/Address" class="btn btn-secondary btn-custom">TRỞ LẠI</a>
+
+                <a href="/Payment/Checkout" class="btn btn-danger btn-custom">ĐẶT HÀNG</a>
+            </div>
+        </div>
+
+        <!-- Chi Tiết Đơn Hàng -->
+        <div class="col-md-5 mb-5">
+            <div class="details-summary">
+                <h5 class="mb-4">CHI TIẾT ĐƠN HÀNG</h5>
+                <!-- Sản phẩm 1 -->
+                <div class="order-item">
+                    <div class="d-flex align-items-center">
+                        <img src="https://jollibee.com.vn/media/catalog/product/cache/9011257231b13517d19d9bae81fd87cc/m/_/m_n_ngon_ph_i_th_-_1.png" alt="Product">
+                        <div>
+                            <p class="fw-bold mb-0">COMBO MỘT MÌNH ĂN NGON</p>
+                            <small>x 1</small>
+                        </div>
+                    </div>
+                    <p class="fw-bold">+ 78,000 ₫</p>
+                </div>
+                <!-- Sản phẩm 2 -->
+                <div class="order-item">
+                    <div class="d-flex align-items-center">
+                        <img src="https://jollibee.com.vn/media/catalog/product/cache/9011257231b13517d19d9bae81fd87cc/m/_/m_n_ngon_ph_i_th_-_1.png" alt="Product">
+                        <div>
+                            <p class="fw-bold mb-0">DEAL HỜI MỜI BẠN</p>
+                            <small>x 1</small>
+                        </div>
+                    </div>
+                    <p class="fw-bold">+ 79,000 ₫</p>
+                </div>
+                <!-- Tổng Cộng -->
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <p class="total-text">Tổng Cộng:</p>
+                    <p class="total-price">157,000 ₫</p>
+                </div>
+                <p class="note mt-2 text-danger">Đã bao gồm giá thuế VAT 8%</p>
+
+                <!-- Áp dụng khuyến mãi -->
+                <div class="mt-4">
+                    <label class="form-label"><b>Áp dụng khuyến mãi</b></label>
+                    <div class="d-flex mb-3">
+                        <input type="text" class="form-control me-2" placeholder="Nhập mã phiếu quà tặng">
+                        <button class="btn btn-warning w-50 text-white">Duyệt voucher</button> <!-- Cập nhật -->
+                    </div>
+                    <label class="form-label"><b>Áp dụng coupon</b></label>
+                    <div class="d-flex">
+                        <input type="text" class="form-control me-2" placeholder="Nhập mã khuyến mãi">
+                        <button class="btn btn-danger w-50">ÁP DỤNG</button> <!-- Cập nhật -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

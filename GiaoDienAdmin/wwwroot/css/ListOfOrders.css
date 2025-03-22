@@ -13,7 +13,6 @@ body {
 }
 
 body {
-    /* display: grid; */
     grid-template-columns: 2fr 10fr;
     height: 100vh;
     -webkit-user-select: none;
@@ -208,7 +207,6 @@ body {
         }
 
 .content .body-section {
-    /* flex-grow: 1; */
     padding: 20px;
     overflow: auto;
 }

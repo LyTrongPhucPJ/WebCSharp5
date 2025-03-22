@@ -1,0 +1,47 @@
+﻿@model List<GiaoDienAdmin.Models.CartItemModel>
+
+<h2>Thanh toán giỏ hàng</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Đơn giá</th>
+            <th>Thành tiền</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            decimal total = 0;
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.Quantity</td>
+                    <td>@string.Format("{0:N0} VND", item.Price)</td>
+                    <td>@string.Format("{0:N0} VND", item.Price * item.Quantity)</td>
+                </tr>
+                total += item.Price * item.Quantity;
+            }
+            <tr>
+                <td colspan="3" class="text-right"><strong>Tổng tiền:</strong></td>
+                <td><strong>@string.Format("{0:N0} VND", total)</strong></td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">Giỏ hàng của bạn đang trống.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model != null && Model.Any())
+{
+    <form asp-action="Checkout" asp-controller="Payment" method="post">
+        <button type="submit" class="btn btn-primary">Thanh toán VNPay</button>
+    </form>
+}

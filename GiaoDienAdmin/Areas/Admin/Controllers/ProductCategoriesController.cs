@@ -20,14 +20,12 @@ namespace GiaoDienAdmin.Areas.Admin.Controllers
             _categoryService = categoryService;
         }
 
-        // GET: Admin/ProductCategories
         public async Task<IActionResult> Index()
         {
             var categories = await _categoryService.GetCategoriesAsync();
             return View(categories);
         }
 
-        // GET: Admin/ProductCategories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
@@ -38,13 +36,11 @@ namespace GiaoDienAdmin.Areas.Admin.Controllers
             return View(category);
         }
 
-        // GET: Admin/ProductCategories/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/ProductCategories/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductCategories category)
@@ -57,7 +53,6 @@ namespace GiaoDienAdmin.Areas.Admin.Controllers
             return View(category);
         }
 
-        // GET: Admin/ProductCategories/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -68,7 +63,6 @@ namespace GiaoDienAdmin.Areas.Admin.Controllers
             return View(category);
         }
 
-        // POST: Admin/ProductCategories/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, ProductCategories category)
@@ -83,7 +77,6 @@ namespace GiaoDienAdmin.Areas.Admin.Controllers
             return View(category);
         }
 
-        // GET: Admin/ProductCategories/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
@@ -94,7 +87,6 @@ namespace GiaoDienAdmin.Areas.Admin.Controllers
             return View(category);
         }
 
-        // POST: Admin/ProductCategories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

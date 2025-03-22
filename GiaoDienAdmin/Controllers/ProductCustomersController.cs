@@ -1,4 +1,5 @@
-﻿using GiaoDienAdmin.Models;
+﻿using GiaoDienAdmin.Areas.Admin.Data;
+using GiaoDienAdmin.Models;
 using GiaoDienAdmin.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Query;
@@ -14,6 +15,7 @@ namespace GiaoDienAdmin.Controllers
             _productCustomersService = productService;
         }
 
+      
         [HttpGet("Filter/{categoryId}")]
         public async Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(int categoryId)
         {
@@ -31,7 +33,7 @@ namespace GiaoDienAdmin.Controllers
             return Ok(filteredProducts);
         }
 
-
+       
         public async Task<IActionResult> Locsp()
         {
             var categories = await _productCustomersService.GetCategoriesAsync(); // Lấy danh mục sản phẩm

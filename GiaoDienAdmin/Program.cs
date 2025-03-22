@@ -1,17 +1,35 @@
 ﻿
+using System;
+using GiaoDienAdmin.Areas.Admin.Data;
 using GiaoDienAdmin.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Th?i gian timeout c?a session
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+builder.Services.AddSingleton<IVnPayService, VnPayService>();
+// 4. Đăng ký dịch vụ Email
+//Thêm đóng này để lấy thư viện chạy JW
+builder.Services.AddSession();
+builder.Services.AddHttpClient();
+builder.Services.AddDistributedMemoryCache(); // Bộ nhớ tạm
+builder.Services.AddSession(); // Thêm Session Middleware
+
+/*builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30); // Thời gian session tồn tại
     options.Cookie.HttpOnly = true; // Chỉ truy cập bằng HTTP, không truy cập từ JavaScript
     options.Cookie.IsEssential = true; // Đảm bảo session luôn hoạt động
 });
-
+*/
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

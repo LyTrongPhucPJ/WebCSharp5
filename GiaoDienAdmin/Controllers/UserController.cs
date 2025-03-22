@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration.UserSecrets;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using GiaoDienAdmin.Areas.Admin.Data;
+using System.Diagnostics;
 
 namespace GiaoDienAdmin.Controllers
 {
@@ -23,20 +25,7 @@ namespace GiaoDienAdmin.Controllers
             _employeeService = employeeService;  // Inject EmployeeService
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      
 
         [HttpGet]
         public IActionResult Register()
@@ -303,7 +292,7 @@ namespace GiaoDienAdmin.Controllers
             return Unauthorized();
         }
 
+     
+       
     }
-
-
 }

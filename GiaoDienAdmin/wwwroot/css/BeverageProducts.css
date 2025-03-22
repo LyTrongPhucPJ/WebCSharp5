@@ -1,18 +1,16 @@
-﻿/* Xóa khoảng cách hoặc viền không cần thiết */
-body {
+﻿body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Ngăn tràn ngang */
+    overflow-x: hidden; 
 }
-/* PhẦN SẢN PHẨM */
 .category-list {
     background: #f8f9fa;
     padding: 20px;
     border-radius: 10px;
     position: sticky;
-    top: 10px; /* Cách mép trên 10px */
-    max-height: 90vh; /* Giữ cho không quá dài */
-    overflow-y: auto; /* Nếu danh mục quá dài, cho phép cuộn */
+    top: 10px; 
+    max-height: 90vh; 
+    overflow-y: auto;
 }
 
 .product-card {

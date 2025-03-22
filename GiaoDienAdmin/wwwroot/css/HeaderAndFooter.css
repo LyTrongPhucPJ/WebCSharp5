@@ -37,7 +37,7 @@
     align-items: center;
     border: 1px solid #ddd;
     border-radius: 40px;
-    padding: 5px 15px; /* Điều chỉnh padding để chiều rộng nhỏ hơn */
+    padding: 5px 15px; 
     background-color: #f9f9f9;
     max-width: 400px;
 }
@@ -107,20 +107,20 @@
     }
 
     .delivery-info {
-        max-width: 100%; /* Chiếm toàn bộ chiều rộng */
-        padding: 5px 10px; /* Thu gọn padding */
+        max-width: 100%;
+        padding: 5px 10px; 
     }
 
     .delivery-text span {
-        font-size: 12px; /* Thu nhỏ chữ */
+        font-size: 12px; 
     }
 
     .delivery-text p {
-        font-size: 10px; /* Thu nhỏ chữ */
+        font-size: 10px;
     }
 
     .delivery-info img {
-        width: 25px; /* Thu nhỏ icon */
+        width: 25px; 
         height: 25px;
     }
 }
@@ -139,68 +139,61 @@
     }
 
     .delivery-info {
-        flex-direction: column; /* Sắp xếp theo cột cho màn hình rất nhỏ */
+        flex-direction: column;
         align-items: flex-start;
         padding: 5px;
     }
 
         .delivery-info img {
-            margin-bottom: 5px; /* Tạo khoảng cách với text */
+            margin-bottom: 5px;
         }
 
     .delivery-text {
         text-align: left;
     }
 }
-/* Xóa khoảng cách hoặc viền không cần thiết */
 body {
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Ngăn tràn ngang */
+    overflow-x: hidden;
 }
-/* Về menu con  */
-/* Định dạng menu cha */
+
 .dropdown-menu {
     display: none;
     position: absolute;
     background-color: white;
     border-radius: 5px;
     padding: 5px;
-    min-width: 400px; /* Tăng chiều rộng để đủ hiển thị 2 cột */
+    min-width: 400px; 
     z-index: 1000;
-    border: 1px solid #ccc; /* Thêm viền nhẹ để đẹp hơn */
+    border: 1px solid #ccc;
 }
 
-/* Hiển thị menu khi hover */
 .nav-item.dropdown:hover .dropdown-menu {
     display: block;
 }
 
-/* Của sản phẩm */
-/* Định dạng menu cha */
+
 .dropdown-menu-product {
     display: none;
     position: absolute;
     background-color: white;
     border-radius: 5px;
     padding: 5px;
-    min-width: 350px; /* Tăng chiều rộng để đủ hiển thị 2 cột */
+    min-width: 350px; 
     z-index: 1000;
-    border: 1px solid #ccc; /* Thêm viền nhẹ để đẹp hơn */
+    border: 1px solid #ccc;
 }
 
-/* Hiển thị menu khi hover */
 .nav-item.dropdown:hover .dropdown-menu-product {
     display: block;
 }
 
-/* Chia menu thành hai cột */
 .menu-columns {
     display: flex;
     justify-content: space-between;
 }
 
-/* Căn chỉnh cột trái */
 .left-menu {
     list-style: none;
     padding: 0;
@@ -208,75 +201,65 @@ body {
     width: 50%;
 }
 
-/* Căn chỉnh cột phải */
 .right-menu {
     list-style: none;
     padding: 0;
     margin: 0;
     width: 50%;
-    text-align: right; /* Căn chữ về bên phải */
+    text-align: right; 
 }
 
-/* Định dạng các mục menu con */
 .dropdown-item {
     padding: 10px 15px;
-    color: #333333; /* Màu chữ mặc định */
+    color: #333333; 
     text-decoration: none;
     display: block;
     transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
-    /* Bỏ hiệu ứng nháy màu xanh dương khi hover */
     .dropdown-item:focus,
     .dropdown-item:active {
-        background-color: transparent !important; /* Xóa hiệu ứng xanh dương */
-        color: #28a745 !important; /* Xanh lá cây */
+        background-color: transparent !important;
+        color: #28a745 !important; 
     }
 
-    /* Hiệu ứng hover: chữ xanh lá cây */
     .dropdown-item:hover {
-        background-color: transparent; /* Không có nền xám nhạt */
-        color: #28a745; /* Chữ chuyển thành màu xanh lá cây */
+        background-color: transparent; 
+        color: #28a745; 
     }
 
-    /* Định dạng các tiêu đề trong menu con */
     .dropdown-item.text-success {
         font-weight: bold;
         font-size: 1rem;
     }
-/* CSS về chúng tôi */
-/* Định dạng menu cha */
+
 .dropdown-menu-about {
     display: none;
     position: absolute;
     background-color: white;
     border-radius: 5px;
     padding: 15px;
-    min-width: 700px; /* Độ rộng lớn hơn để chứa các tiêu đề trên cùng một hàng */
+    min-width: 700px; 
     z-index: 1000;
     border: 1px solid #ccc;
 }
 
-/* Hiển thị menu khi hover */
 .nav-item.dropdown:hover .dropdown-menu-about {
     display: block;
 }
 
-/* Sắp xếp các tiêu đề theo hàng ngang */
 .menu-rows {
     display: flex;
-    justify-content: space-between; /* Chia đều khoảng cách giữa các mục */
-    flex-wrap: nowrap; /* Không xuống dòng */
+    justify-content: space-between; 
+    flex-wrap: nowrap;
 }
 
-/* Định dạng từng nhóm mục */
 .menu-section {
     display: flex;
     flex-direction: column;
     min-width: 150px;
 }
 
-/* Định dạng tiêu đề (CÀ PHÊ, TRÀ, ...) */
 .dropdown-title {
     font-weight: bold;
     font-size: 1rem;
@@ -285,7 +268,6 @@ body {
     padding-bottom: 5px;
 }
 
-/* Định dạng các mục con */
 .dropdown-item {
     padding: 5px 0;
     color: #333;
@@ -294,11 +276,9 @@ body {
     transition: color 0.3s ease-in-out;
 }
 
-    /* Hiệu ứng hover: chữ xanh lá cây */
     .dropdown-item:hover {
         color: #28a745;
     }
-/* Ẩn menu con "Về Chúng Tôi" trên mobile */
 @media (max-width: 768px) {
     .dropdown-menu-about {
         display: none !important;
@@ -306,7 +286,6 @@ body {
     }
 }
 
-/* Hiển thị menu khi hover trên màn hình lớn */
 @media (min-width: 769px) {
     .nav-item.dropdown:hover .dropdown-menu-about {
         display: block;
@@ -314,7 +293,6 @@ body {
     }
 }
 
-/* Footer */
 .footer {
     background-color: #006f3c;
     color: white;
@@ -334,12 +312,10 @@ body {
     height: 30px;
     margin: 5px;
 }
-/* Đảm bảo menu con hiển thị khi hover */
 .nav-item.dropdown:hover .dropdown-menu {
     display: block;
 }
 
-/* Menu con mặc định ẩn */
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -350,7 +326,6 @@ body {
     padding: 10px 0;
 }
 
-/* Các item trong menu con */
 .dropdown-item {
     padding: 8px 16px;
     text-decoration: none;
@@ -361,7 +336,6 @@ body {
         background-color: #f1f1f1;
     }
 
-/* Định dạng vị trí cho các item trong menu */
 .nav-item {
     position: relative;
 }

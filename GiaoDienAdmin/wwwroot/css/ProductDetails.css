@@ -1,5 +1,4 @@
-﻿/* Phần Chi tiết  */
-.product-image {
+﻿.product-image {
     background-color: #f4f4f4;
     border-radius: 8px;
     padding: 20px;
@@ -31,9 +30,8 @@
     width: 36px;
     height: 36px;
 }
-    /* Xóa hiệu ứng hover */
     .topping-controls button:hover {
-        background-color: rgb(236, 239, 241); /* Không đổi màu */
+        background-color: rgb(236, 239, 241); 
     }
 
 .topping-controls span {
@@ -52,14 +50,13 @@
     margin-top: 0;
 }
 
-/* CSS Tùy chỉnh */
 .topping-controls button {
     width: 36px;
     height: 36px;
     text-align: center;
-    font-weight: bold; /* Đậm */
-    color: rgb(0, 111, 60); /* Màu xanh */
-    border-color: rgb(236, 239, 241); /* Đường viền xanh */
+    font-weight: bold; 
+    color: rgb(0, 111, 60);
+    border-color: rgb(236, 239, 241); 
     background-color: rgb(236, 239, 241);
 }
 
@@ -78,9 +75,9 @@
     background-color: rgb(0, 111, 60);
     color: #fff;
     border: none;
-    padding: 10px 15px; /* Điều chỉnh padding để tăng chiều cao và chiều rộng */
+    padding: 10px 15px;
     border-radius: 5px;
-    width: 100%; /* Đặt chiều rộng của nút chiếm toàn bộ chiều rộng của phần tử chứa */
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,7 +88,7 @@
     }
 
     .product-card .btn-buy .cart-icon {
-        margin-right: 10px; /* Khoảng cách giữa icon và chữ */
+        margin-right: 10px; 
     }
 
 .product-card .heart-icon {
@@ -108,8 +105,8 @@
     }
 
     .product-card .heart-icon i {
-        font-size: 2rem; /* Kích thước icon */
-        color: #28a745; /* Màu xanh cho trái tim */
+        font-size: 2rem; 
+        color: #28a745;
         cursor: pointer;
-        transition: color 0.3s ease; /* Hiệu ứng chuyển màu khi hover */
+        transition: color 0.3s ease; 
     }

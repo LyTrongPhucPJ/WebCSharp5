@@ -91,16 +91,61 @@ namespace GiaoDienAdmin.Services
             return JsonSerializer.Deserialize<Employee>(response, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
-        //// Thêm nhân viên vào API
-        //public async Task<bool> CreateEmployeeAsync(Employee employee)
-        //{
-        //    var json = JsonSerializer.Serialize(employee);
-        //    var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-        //    var response = await _httpClient.PostAsync("https://localhost:7195/api/Employees", content);  // Đảm bảo URL chính xác
-        //    return response.IsSuccessStatusCode;
-        //}
+        /*public async Task<string> AddEmployeeAsync(string fullName, string phoneNumber, string email, DateTime? dateOfBirth, string address, bool gender, int roleId)
+        {
+            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(phoneNumber) || string.IsNullOrEmpty(email))
+            {
+                return "Vui lòng nhập đầy đủ thông tin.";
+            }
 
+            // Kiểm tra số điện thoại đã tồn tại
+            if (await CheckPhoneExistsAsync(phoneNumber))
+            {
+                return "Số điện thoại đã tồn tại.";
+            }
+
+            // Kiểm tra email đã tồn tại
+            if (await CheckEmailExistsAsync(email))
+            {
+                return "Email đã tồn tại.";
+            }
+
+            // Mật khẩu mặc định
+            string defaultPassword = "123456";
+
+            // 🔥 Băm mật khẩu bằng SHA-256 + Base64
+            string hashedPassword = HashHelper.ComputeSha256Hash(defaultPassword);
+
+            // Định dạng ngày sinh và địa chỉ mặc định
+            DateTime finalDateOfBirth = dateOfBirth ?? DateTime.Now;
+            string finalAddress = string.IsNullOrEmpty(address) ? "Chưa có địa chỉ" : address;
+
+            // Tạo đối tượng nhân viên mới
+            var newEmployee = new Employee
+            {
+                FullName = fullName,
+                PhoneNumber = phoneNumber,
+                Email = email,
+                PassWord = hashedPassword,
+                DateOfBirth = finalDateOfBirth,
+                Address = finalAddress,
+                Gender = gender,
+                RoleId = roleId,
+                IsActive = true
+            };
+
+            // Gửi yêu cầu POST đến API để thêm nhân viên
+            var json = JsonSerializer.Serialize(newEmployee);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync(_apiUrl, content);
+            if (response.IsSuccessStatusCode)
+            {
+                return "Thêm nhân viên thành công.";
+            }
+            return "Thêm nhân viên thất bại, vui lòng thử lại.";
+        }*/
 
         public async Task<string> AddEmployeeAsync(string fullName, string phoneNumber, string email, DateTime? dateOfBirth, string address, bool gender, int roleId)
         {
@@ -154,8 +199,13 @@ namespace GiaoDienAdmin.Services
             {
                 return "Thêm nhân viên thành công.";
             }
+
+            // Log lỗi nếu có
+            string errorMessage = await response.Content.ReadAsStringAsync();
+            Console.WriteLine("API Error: " + errorMessage); // Ghi lại thông báo lỗi từ API
             return "Thêm nhân viên thất bại, vui lòng thử lại.";
         }
+
 
 
         private async Task<bool> CheckPhoneExistsAsync(string phoneNumber)

@@ -15,21 +15,12 @@ namespace GiaoDienAdmin.Areas.Admin.Controllers
             _employeeService = employeeService;
         }
 
-      
-
-
-
-
-
-
-        // GET: Admin/Employees
         public async Task<IActionResult> Index()
         {
             var employees = await _employeeService.GetEmployeesAsync();
             return View(employees);
         }
 
-        // GET: Admin/Employees/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
@@ -46,23 +37,40 @@ namespace GiaoDienAdmin.Areas.Admin.Controllers
             return View();
         }
 
-        // Xử lý thêm nhân viên qua service
+        /* [HttpPost("create")]
+         public async Task<IActionResult> Create(string fullName, string phoneNumber, string email, DateTime? dateOfBirth, string address, bool gender, int roleId)
+         {
+             var result = await _employeeService.AddEmployeeAsync(fullName, phoneNumber, email, dateOfBirth, address, gender, roleId);
+
+             if (result == "Thêm nhân viên thành công.")
+             {
+                 TempData["SuccessMessage"] = result;
+                 return RedirectToAction("Index");
+             }
+
+             ViewBag.ErrorMessage = result;
+             return View();
+         }*/
+
         [HttpPost("create")]
         public async Task<IActionResult> Create(string fullName, string phoneNumber, string email, DateTime? dateOfBirth, string address, bool gender, int roleId)
         {
+            // Gọi service để thêm nhân viên
             var result = await _employeeService.AddEmployeeAsync(fullName, phoneNumber, email, dateOfBirth, address, gender, roleId);
 
+            // Nếu thêm thành công, chuyển hướng về Index
             if (result == "Thêm nhân viên thành công.")
             {
-                TempData["SuccessMessage"] = result;
+                TempData["SuccessMessage"] = result; // Lưu thông báo thành công để hiển thị ở trang Index
                 return RedirectToAction("Index");
             }
 
+            // Nếu có lỗi, hiển thị thông báo lỗi trên giao diện Create
             ViewBag.ErrorMessage = result;
             return View();
         }
 
-        // GET: Admin/Employees/Edit/5
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -82,7 +90,6 @@ namespace GiaoDienAdmin.Areas.Admin.Controllers
             var existingEmployee = await _employeeService.GetEmployeeByIdAsync(id);
             if (existingEmployee == null) return NotFound();
 
-            // Nếu mật khẩu không thay đổi, giữ mật khẩu cũ
             if (string.IsNullOrEmpty(employee.PassWord))
             {
                 employee.PassWord = existingEmployee.PassWord;
@@ -93,7 +100,7 @@ namespace GiaoDienAdmin.Areas.Admin.Controllers
                 var result = await _employeeService.UpdateEmployeeAsync(id, employee);
                 if (result)
                 {
-                    return RedirectToAction(nameof(Index));  // Nếu cập nhật thành công, chuyển hướng đến danh sách
+                    return RedirectToAction(nameof(Index));  
                 }
                 else
                 {
@@ -101,11 +108,10 @@ namespace GiaoDienAdmin.Areas.Admin.Controllers
                 }
             }
 
-            return View(employee);  // Nếu có lỗi hoặc model không hợp lệ, quay lại form và hiển thị lỗi
+            return View(employee);  
         }
 
 
-        // GET: Admin/ProductCategories/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
@@ -116,7 +122,6 @@ namespace GiaoDienAdmin.Areas.Admin.Controllers
             return View(category);
         }
 
-        // POST: Admin/ProductCategories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

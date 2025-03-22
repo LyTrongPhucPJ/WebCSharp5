@@ -1,5 +1,4 @@
-﻿/* Reset CSS */
-* {
+﻿* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -25,13 +24,11 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Phần hình ảnh bên trái */
 .login-image {
     flex: 1;
     background: url("../img/logo.jpg") no-repeat center center/cover;
 }
 
-/* Phần form bên phải */
 .login-form {
     flex: 1;
     padding: 40px;
@@ -119,14 +116,13 @@ body {
             }
 
 .password-wrapper input {
-    width: 100%; /* Tăng chiều rộng */
+    width: 100%; 
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
     outline: none;
 }
-/* Mắt */
 .password-wrapper {
     position: relative;
 }
@@ -157,7 +153,6 @@ body {
     cursor: pointer;
 }
 
-/* Icon trang chủ */
 .home-icon {
     position: absolute;
     top: 30px;
@@ -171,7 +166,6 @@ body {
     .home-icon:hover {
         color: #218838;
     }
-/* Icon prev */
 .prev-icon {
     position: absolute;
     top: 30px;
